@@ -1,0 +1,32 @@
+[project]
+name = "physics-fundamentals-api"
+version = "1.0.0"
+description = "Cached, CORS-safe proxy for free public physics and space data."
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.32",
+    "httpx>=0.27",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "ruff>=0.7",
+]
+
+[tool.ruff]
+line-length = 90
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+# Tests live in backend/tests but import `backend.app.main`, so the repository
+# root has to be importable. Running pytest from inside backend/ would not find
+# it without this.
+pythonpath = [".."]
+testpaths = ["tests"]
