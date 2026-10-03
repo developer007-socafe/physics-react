@@ -1,111 +1,217 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   Retro CRT terminal theme, mapped onto shadcn/ui's token names so
+   every shadcn component inherits the look without per-component
+   overrides. Colours are amber phosphor on near-black glass.
+   ------------------------------------------------------------------ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Retro pixel display face for headings, terminal face for body */
+  --font-display: 'Press Start 2P', ui-monospace, monospace;
+  --font-mono: 'VT323', ui-monospace, monospace;
+  --font-sans: 'VT323', ui-monospace, monospace;
+}
+
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* Amber phosphor terminal */
+  --background: #0a0805;
+  --foreground: #ffb300;
+  --card: #120d06;
+  --card-foreground: #ffcf6b;
+  --popover: #15100a;
+  --popover-foreground: #ffcf6b;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  --primary: #ffb300;
+  --primary-foreground: #140d02;
+  --secondary: #2a1d08;
+  --secondary-foreground: #ffcf6b;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --muted: #1a1309;
+  --muted-foreground: #a8812a;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  --accent: #4de2c2;
+  --accent-foreground: #04120e;
+
+  --destructive: #ff5c5c;
+  --border: #3d2a0c;
+  --input: #2f2109;
+  --ring: #ffb300;
+
+  /* Screen-glow extras used outside shadcn's token set */
+  --crt-glow: 0 0 6px rgba(255, 179, 0, 0.55);
+  --crt-dim: #a8812a;
+  --surface-2: #100b06;
+
+  color-scheme: dark;
+}
+
+/* ---------------- base ---------------- */
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    /* Smooth in-page navigation without hijacking reduced-motion */
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'VT323', ui-monospace, monospace;
+    font-size: 1.15rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* CRT scanlines. A fixed, non-scrolling overlay so it reads as the glass
+     in front of the content rather than a background pattern. Kept subtle
+     so it costs nothing on this machine's weak integrated GPU. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0.22) 3px,
+      rgba(0, 0, 0, 0.22) 4px
+    );
+  }
+
+  /* Faint vignette, fixed and pointer-events-none */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0) 55%,
+      rgba(0, 0, 0, 0.45) 100%
+    );
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: 'Press Start 2P', ui-monospace, monospace;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    text-shadow: var(--crt-glow);
+  }
+
+  /* Press Start 2P is very wide and hard to read below ~13px, so let it
+     shrink on phones while keeping the display face. */
+  h1 {
+    font-size: clamp(0.95rem, 4.2vw, 1.5rem);
+  }
+  h2 {
+    font-size: clamp(0.8rem, 3.4vw, 1.1rem);
+  }
+  h3 {
+    font-size: clamp(0.72rem, 2.8vw, 0.9rem);
+  }
+
+  a {
+    color: var(--foreground);
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+
+  /* Keyboard focus must stay obvious on a dark CRT theme */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+/* ---------------- components ---------------- */
+
+@layer components {
+  /* MathJax inherits the amber phosphor so equations sit in the theme */
+  mjx-container {
+    color: var(--foreground) !important;
   }
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+  .equation {
+    margin: 1.4rem 0;
+    padding: 0.9rem 0.6rem;
+    border-left: 2px solid var(--primary);
+    background: rgba(255, 179, 0, 0.04);
+    overflow-x: auto;
+    overflow-y: hidden;
   }
-}
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+  .definition,
+  .tip,
+  .example {
+    margin: 1.2rem 0;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    border-radius: 4px;
+    background: rgba(255, 179, 0, 0.03);
   }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+  .definition {
+    border-left-color: var(--primary);
   }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  .tip {
+    border-left-color: var(--accent);
+  }
+  .example {
+    border-left-color: var(--muted-foreground);
+  }
 }
