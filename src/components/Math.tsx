@@ -7,9 +7,12 @@
  * rest of the page. Here the caller must pass explicit `\\(...\\)` or
  * `\\[...\\]`, so a malformed formula fails visibly in one place.
  *
- * `katex.render` is imperative and writes HTML, so the output is injected via
- * `ref.textContent` — the rendered string is KaTeX's own, escaped by its
- * `output: 'html'` mode into text nodes, never parsed as page markup.
+ * `katex.renderToString` is imperative and returns an HTML string, so it is
+ * assigned to `ref.innerHTML`. This is the one place in the app that parses a
+ * string as markup. It is safe here and nowhere else: the string is produced
+ * by KaTeX's own serialiser from a TeX source we control, not by user input
+ * or by parsing a document. The old site, which did build markup out of page
+ * HTML, is exactly what this port removes.
  */
 import katex from 'katex'
 import 'katex/dist/katex.min.css'
@@ -47,7 +50,7 @@ export function Math({ tex, display = false, className = '' }: MathProps) {
     if (!node) return
 
     try {
-      node.textContent = katex.renderToString(body, {
+      node.innerHTML = katex.renderToString(body, {
         displayMode: showAsDisplay,
         throwOnError: true,
         // Strict mode catches typos that would otherwise render as red

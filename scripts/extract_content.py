@@ -79,9 +79,36 @@ DIAGRAM_RE = re.compile(
 
 
 def strip_tags(fragment: str) -> str:
-    """Plain text from an HTML fragment, with entities decoded."""
-    text = TAG_RE.sub(" ", fragment)
+    """Plain text from an HTML fragment, with entities decoded.
+
+    LaTeX is shielded from the tag stripper. A formula like
+
+        \\begin{cases} ds^2 < 0 & \\text{timelike} \\end{cases}
+
+    contains a literal `<`, and `<[^>]+>` matches from that `<` all the way to
+    the first `>`, swallowing the comparison operator and leaving a formula
+    that still parses as TeX but states the opposite of the truth. The bug is
+    invisible in the output unless you check for it: `ds^2 < 0` becomes `ds^2 0`.
+    """
+    shields: list[str] = []
+
+    def hide(match: re.Match[str]) -> str:
+        shields.append(match.group(0))
+        return f"\x00SHIELD{len(shields) - 1}\x00"
+
+    # Shield $...$ math and any <span class="math"> payload before stripping.
+    # Display math first: a $$...$$ pair must be consumed whole, or the
+    # single-dollar pattern matches across the outer delimiters and the
+    # exposed "<" in ds^2 < 0 gets eaten as a fake HTML tag.
+    text = re.sub(r"\$\$.*?\$\$", hide, fragment, flags=re.S)
+    text = re.sub(r"\$[^$\n]*\$", hide, text)
+    text = TAG_RE.sub(" ", text)
     text = html.unescape(text)
+
+    def restore(match: str) -> str:
+        return shields[int(match.group(1))]
+
+    text = re.sub(r"\x00SHIELD(\d+)\x00", restore, text)
     text = re.sub(r"\s+", " ", text)
     return text.strip()
 

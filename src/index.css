@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Retro display faces. Press Start 2P for headings, VT323 for body. */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
 /* ------------------------------------------------------------------
    Retro CRT terminal theme, mapped onto shadcn/ui's token names so
    every shadcn component inherits the look without per-component
@@ -214,4 +217,70 @@
   .example {
     border-left-color: var(--muted-foreground);
   }
+}
+/* ---------------- Diagrams ---------------------------------------- */
+
+/* The diagram scrolls inside its own box rather than widening the page.
+   At 320px the wide figures (especially the Penrose diagram) are
+   illegible when scaled down to fit, so they keep an intrinsic minimum
+   width and the container scrolls. page scrollWidth must stay equal to
+   clientWidth at every viewport. */
+.diagram-scroll {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.9rem 0.6rem;
+  background: rgba(255, 179, 0, 0.03);
+  color: var(--primary);
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.svg-diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 460px;
+}
+
+/* The SVG must never be allowed to widen its own scroll container: an SVG is a
+   replaced element and will happily render at its intrinsic viewBox width,
+   dragging the wrapper (and the page) with it. Pinning the width to 100% and
+   letting min-width handle the scroll means the box stays put and the graphic
+   scrolls inside it. */
+.diagram-scroll > .svg-diagram {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* The Penrose diagram is taller than it is wide; give it more room. */
+.svg-diagram.svg-penrose {
+  min-width: 540px;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+@media (max-width: 400px) {
+  .diagram-scroll { padding: 0.7rem 0.4rem; }
+  .svg-diagram { min-width: 420px; }
+}
+
+/* KaTeX emits two parallel renderings: .katex-html for sighted readers and
+   .katex-mathml, a screen-reader MathML copy. KaTeX's own stylesheet hides the
+   MathML with the clip technique, which relies on position:absolute and a 1px
+   box -- but the elements still occupy layout flow inside our scroll boxes and
+   push the page wider than the viewport. On a 320px screen that turned every
+   content page into a sideways-scrolling one. Clipping it here keeps the
+   accessibility tree intact (it is still read by assistive tech) while
+   removing it from layout entirely. */
+.katex-mathml {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  margin: -1px;
 }

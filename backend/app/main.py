@@ -48,6 +48,8 @@ ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:8000",
+    "http://127.0.0.1:8893",
+    "http://localhost:8893",
     "https://developer007-socafe.github.io",
 ]
 

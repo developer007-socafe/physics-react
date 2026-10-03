@@ -28,13 +28,13 @@ export type Block =
 /** Identifiers exported by src/components/diagrams. */
 export type DiagramId =
   | 'horizonCrossSection'
-  | 'redshift'
   | 'tidalStretch'
   | 'accretionDisk'
   | 'lensing'
-  | 'penroseDiagram'
   | 'lightCone'
   | 'twinParadox'
+  | 'penroseDiagram'
+  | 'wormhole'
 
 export interface Section {
   id: string
