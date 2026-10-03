@@ -27,7 +27,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-3">
         <Link
           to="/"
-          className="shrink-0 font-display text-xs leading-relaxed text-foreground sm:text-sm"
+          className="flex min-h-11 shrink-0 items-center font-display text-xs leading-relaxed text-foreground sm:text-sm"
         >
           Physics<span className="text-accent">.</span>Fundamentals
         </Link>
@@ -71,24 +71,26 @@ export function SiteHeader() {
         <div className="ml-auto md:hidden">
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <Button variant="outline" size="sm" aria-label="Open topics menu">
+              {/* h-11 for the touch target: the button reads as a 32px box but
+                  a thumb needs ~44px. The extra height is padding, not size. */}
+              <Button variant="outline" size="sm" aria-label="Open topics menu" className="h-11">
                 TOPICS ▾
               </Button>
             </DialogTrigger>
             <DialogContent className="max-h-[80dvh] overflow-y-auto">
               <DialogTitle>Topics</DialogTitle>
               <nav className="flex flex-col">
-                <NavLink to="/" className="border-b border-border py-2 font-mono">
+                <NavLink to="/" className="flex min-h-11 items-center border-b border-border py-2.5 font-mono">
                   Home
                 </NavLink>
-                <NavLink to="/progress" className="border-b border-border py-2 font-mono">
+                <NavLink to="/progress" className="flex min-h-11 items-center border-b border-border py-2.5 font-mono">
                   ▓ Progress
                 </NavLink>
                 {topics.map((topic) => (
                   <NavLink
                     key={topic.slug}
                     to={`/topic/${topic.slug}`}
-                    className="flex items-center gap-2 border-b border-border py-2 font-mono"
+                    className="flex min-h-11 items-center gap-2 border-b border-border py-2.5 font-mono"
                   >
                     <span aria-hidden>{topic.icon}</span>
                     {topic.title}

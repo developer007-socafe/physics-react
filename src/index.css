@@ -284,3 +284,12 @@
   width: 1px;
   margin: -1px;
 }
+
+/* The progress track was bg-primary/20 -- amber at 20% opacity on a
+   near-black background, which rendered as nothing. At 0% the bar looked
+   like a broken element rather than an empty one, which is the wrong
+   message on a gamification HUD. This gives it a visible empty state. */
+[data-slot='progress'] {
+  background-color: color-mix(in oklab, var(--primary) 30%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--primary) 45%, transparent);
+}

@@ -101,9 +101,11 @@ function ProgressPage() {
             const done = topic.sections.filter((s) => record.completed.includes(s.id)).length
             return (
               <li key={topic.slug}>
+                {/* A full touch height rather than the text baseline: this is
+                    a jump target, not running prose. */}
                 <Link
                   to={`/topic/${topic.slug}`}
-                  className="font-mono text-accent hover:underline"
+                  className="block py-2 font-mono text-accent hover:underline"
                 >
                   {topic.icon} {topic.title}
                 </Link>
@@ -140,7 +142,7 @@ function ProgressPage() {
         ) : (
           <button
             type="button"
-            className="font-mono text-sm text-muted-foreground underline"
+            className="py-2 font-mono text-sm text-muted-foreground underline"
             onClick={() => setConfirming(true)}
           >
             Reset all progress
@@ -192,6 +194,10 @@ function TopicPage() {
 
       <nav aria-label="Sections" className="my-6" data-reveal>
         <p className="mb-2 font-mono text-xs text-muted-foreground">CONTENTS</p>
+        {/* py-2 rather than py-1: at 390px these links are the primary way to
+            jump around, and 19px-tall rows are close to unhittable with a
+            thumb. 36px each clears the comfortable minimum without turning a
+            nine-item list into a wall of space. */}
         <ol className="grid gap-1 sm:grid-cols-2">
           {topic.sections.map((section) => {
             const complete = record.completed.includes(section.id)
@@ -199,7 +205,7 @@ function TopicPage() {
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}
-                  className="font-mono text-sm text-accent hover:underline"
+                  className="block py-2 font-mono text-sm leading-snug text-accent hover:underline"
                 >
                   {complete ? '✓' : ' '} [{String(section.number).padStart(2, '0')}] {section.title}
                 </a>

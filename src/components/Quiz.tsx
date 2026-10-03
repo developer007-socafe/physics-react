@@ -113,7 +113,7 @@ export function Quiz({ questions, title }: { questions: Question[]; title: strin
                 disabled={revealed || alreadyAnswered}
                 onClick={() => !revealed && !alreadyAnswered && setPicked(option)}
                 className={[
-                  'w-full border px-3 py-2 text-left font-mono transition-colors',
+                  'w-full border px-3 py-3 text-left font-mono leading-snug transition-colors sm:py-2',
                   state === 'right'
                     ? 'border-accent bg-accent/15 text-accent'
                     : state === 'wrong'

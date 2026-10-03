@@ -104,7 +104,7 @@ export function ProgressHud() {
         ) : (
           <button
             type="button"
-            className="font-mono text-xs text-muted-foreground underline"
+            className="py-2 font-mono text-xs text-muted-foreground underline"
             onClick={() => setConfirming(true)}
           >
             reset progress
