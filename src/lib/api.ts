@@ -6,6 +6,9 @@
  * so this module's job is only: build the URL, apply a timeout, and turn a
  * network-level failure into the same `{ ok: false, message }` envelope the
  * backend uses. Components therefore have exactly one error shape to handle.
+ *
+ * The payload types below describe what the backend guarantees; callers narrow
+ * with the `ok` discriminant and cast once at the point of use.
  */
 
 /** Read at build time; falls back to the local dev backend. */
@@ -76,7 +79,7 @@ export interface IssPayload {
  * because a hung request on a captive portal or a sleeping laptop can sit
  * open indefinitely and leave a widget stuck on "connecting".
  */
-async function fetchFeed<T>(name: string): Promise<FeedMeta | FeedError> {
+async function fetchFeed(name: string): Promise<FeedMeta | FeedError> {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS)
 
@@ -118,9 +121,9 @@ async function fetchFeed<T>(name: string): Promise<FeedMeta | FeedError> {
   }
 }
 
-export const getApod = () => fetchFeed<ApodPayload>('apod')
-export const getQuakes = () => fetchFeed<QuakePayload>('quakes')
-export const getIss = () => fetchFeed<IssPayload>('iss')
+export const getApod = () => fetchFeed('apod')
+export const getQuakes = () => fetchFeed('quakes')
+export const getIss = () => fetchFeed('iss')
 
 /* ---------------------------------------------------------------- */
 /* Formatting helpers                                                */

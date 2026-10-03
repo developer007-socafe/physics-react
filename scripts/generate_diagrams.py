@@ -1,0 +1,145 @@
+#!/usr/bin/env python3
+"""Generate the React diagram components from the deployed static site.
+
+The SVG geometry is the part most likely to break if retyped: the Penrose
+diagram depends on null lines sitting at exactly 45 degrees and the horizons
+being exactly vertical, and a single mistyped coordinate changes the physics.
+
+So the markup is lifted verbatim rather than rewritten. Only the wrapper
+changes — SVG child attributes survive JSX intact, since `class` becomes
+`className` and everything else (viewBox, d, cx, path commands) is identical
+syntax in both.
+
+Marker ids are namespaced per diagram because duplicate ids in one document
+make `<use>` and `marker-end` references resolve to the first match.
+"""
+
+from __future__ import annotations
+
+import re
+from pathlib import Path
+
+SOURCE = Path("/home/faizal/Projects/physics-fundamentals")
+TARGET = Path("/home/faizal/Projects/physics-react/src/components/diagrams")
+
+# component name -> (source page, index of the <svg> in that page)
+# Indices verified against each block's aria-labelledby: black-holes has
+# horizon, tidal, disk, lensing in that order.
+DIAGRAMS = {
+    "horizonCrossSection": ("black-holes.html", 0),
+    "tidalStretch": ("black-holes.html", 1),
+    "accretionDisk": ("black-holes.html", 2),
+    "lensing": ("black-holes.html", 3),
+    "lightCone": ("time-travel.html", 0),
+    "twinParadox": ("time-travel.html", 1),
+    "penroseDiagram": ("time-travel.html", 2),
+    "wormhole": ("time-travel.html", 3),
+}
+
+SVG_RE = re.compile(r"<svg\b.*?</svg>", re.S)
+# Any diagram-scroll OR figure block can hold a diagram.
+BLOCK_RE = re.compile(
+    r'<(?:div class="diagram-scroll"|div class="figure[^"]*")>(.*?)</(?:div|figure)>', re.S
+)
+CAPTION_RE = re.compile(r'<div class="caption">(.*?)</div>', re.S)
+
+
+def strip_tags(fragment: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", fragment)).strip()
+
+
+def to_jsx(svg: str) -> str:
+    """Adapt SVG markup to JSX.
+
+    Two JSX-specific hazards, both of which appear in ordinary SVG:
+
+    * `class` is spelled `className`.
+    * `<` and `>` inside an attribute value terminate the JSX parser. Every
+      `marker-end="url(#arrow)"` therefore has to be written as an
+      expression container: `markerEnd={'url(#arrow)'}`.
+    """
+    svg = svg.replace('class="svg-diagram svg-penrose"', "")
+    svg = svg.replace('class="svg-diagram"', "")
+
+    # url(#id) inside an attribute -> expression container
+    svg = re.sub(
+        r'\b(marker-start|marker-end|marker-mid|clip-path|fill|stroke)="url\(#([\w-]+)\)"',
+        lambda m: f'{m.group(1)}={{"url(#{m.group(2)})"}}',
+        svg,
+    )
+    svg = svg.replace("class=", "className=")
+
+    # HTML comments are not valid JSX. Convert to JSX expression comments so
+    # the annotating structure in the source survives into the component.
+    svg = re.sub(r"<!--\s*(.*?)\s*-->", lambda m: "{/* " + m.group(1) + " */}", svg, flags=re.S)
+
+    svg = re.sub(r"<(\w+)([^>]*?)\s*/>", r"<\1\2 />", svg)
+    return svg.strip()
+
+
+def title_id(name: str) -> str:
+    return f"{name}-title"
+
+
+def main() -> int:
+    TARGET.mkdir(parents=True, exist_ok=True)
+
+    exports: list[tuple[str, str]] = []
+
+    for name, (filename, index) in DIAGRAMS.items():
+        page = (SOURCE / filename).read_text(encoding="utf-8")
+
+        # Split on the wrapper so each SVG keeps the caption that belongs to
+        # it; matching captions globally mis-pairs them.
+        chunks = page.split('<div class="diagram-scroll">')[1:]
+        svgs = [SVG_RE.search(chunk).group(0) for chunk in chunks]
+
+        if index >= len(svgs):
+            raise SystemExit(f"{name}: page {filename} has only {len(svgs)} SVGs")
+
+        svg = to_jsx(svgs[index])
+        caption_match = CAPTION_RE.search(chunks[index])
+        caption = strip_tags(caption_match.group(1)) if caption_match else ""
+
+        # Namespace ids and references so multiple SVGs on one page cannot
+        # collide on <marker id> or aria-labelledby.
+        suffix = name.replace("-", "")
+        svg = re.sub(r'id="([a-zA-Z][\w-]*?)"', lambda m: f'id="{m.group(1)}-{suffix}"', svg)
+        svg = re.sub(r'url\(#([a-zA-Z][\w-]*?)\)', lambda m: f"url(#{m.group(1)}-{suffix})", svg)
+        svg = re.sub(r'aria-labelledby="([\w-]+) ([\w-]+)"',
+                     lambda m: f'aria-labelledby="{m.group(1)}-{suffix} {m.group(2)}-{suffix}"', svg)
+        svg = re.sub(r'(marker-start|marker-end|marker-mid)="([\w-]+)"',
+                     lambda m: f'{m.group(1)}="{m.group(2)}-{suffix}"', svg)
+        svg = re.sub(r'xlink:href="#([\w-]+)"', lambda m: f'href="#{m.group(1)}-{suffix}"', svg)
+        svg = re.sub(r'<(clipPath|mask|filter|linearGradient|radialGradient)\b',
+                     lambda m: f"<{m.group(1)}", svg)
+
+        component = f'''/**
+ * {name} — lifted verbatim from the deployed static site.
+ *
+ * Geometry must not be "tidied": the Penrose diagram depends on null lines
+ * at exactly 45 degrees and horizons exactly vertical. Generated by
+ * scripts/generate_diagrams.py; edit that, not this file.
+ */
+export function {name}() {{
+  return (
+    <>
+{svg}
+    </>
+  )
+}}
+'''
+        (TARGET / f"{name}.tsx").write_text(component, encoding="utf-8")
+        exports.append((name, caption))
+        print(f"{name:22} {len(svg):>5}b  caption={caption[:52]!r}")
+
+    index_ts = ['/** Generated by scripts/generate_diagrams.py — do not edit. */']
+    for name, _ in exports:
+        index_ts.append(f"export {{ {name} }} from './{name}'")
+    (TARGET / "index.ts").write_text("\n".join(index_ts) + "\n", encoding="utf-8")
+    print(f"\nwrote {len(exports)} components + index.ts")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

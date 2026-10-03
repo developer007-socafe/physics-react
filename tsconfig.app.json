@@ -22,8 +22,8 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
 
-    /* Path alias consumed by vite.config.ts and shadcn/ui */
-    "baseUrl": ".",
+    /* Path alias consumed by vite.config.ts and shadcn/ui. `paths` alone is
+       enough in TS 6 — `baseUrl` is deprecated and errors out. */
     "paths": { "@/*": ["./src/*"] }
   },
   "include": ["src"]
