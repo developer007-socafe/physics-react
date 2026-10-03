@@ -1,0 +1,1701 @@
+[
+  {
+    "slug": "mechanics",
+    "title": "Classical Mechanics",
+    "tagline": "Motion, force, and the conservation laws that let you skip the hard part",
+    "intro": "Motion, force, and the conservation laws that let you skip the hard part",
+    "icon": "🔧",
+    "hue": 28,
+    "sections": [
+      {
+        "id": "kinematics",
+        "number": 1,
+        "title": "Kinematics — Describing Motion",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Kinematics is the language of motion. We describe where something is using position \\(\\vec{r}(t)\\), how fast it's moving with velocity \\(\\vec{v} = d\\vec{r}/dt\\), and how the velocity itself changes with acceleration \\(\\vec{a} = d\\vec{v}/dt\\)."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\vec{v}(t) = \\vec{v}_0 + \\int_0^t \\vec{a}\\,dt',\\qquad \\vec{r}(t) = \\vec{r}_0 + \\int_0^t \\vec{v}(t')\\,dt'\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Constant acceleration",
+            "text": "— the most common case, like free fall. With \\(a\\) constant, the four kinematic equations follow by integration. They only apply when acceleration never changes direction or magnitude."
+          },
+          {
+            "kind": "para",
+            "text": "For motion in a straight line with constant acceleration \\(a\\), starting from position \\(x_0\\) with initial velocity \\(v_0\\):"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[x(t) = x_0 + v_0 t + \\tfrac{1}{2} a t^2\\]"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[v(t) = v_0 + a t\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The last Suvat equation connects the others without \\(t\\):"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[v^2 = v_0^2 + 2 a (x - x_0)\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "example",
+            "title": "Example.",
+            "text": "A ball is dropped from a height of 45 m. How long until it hits the ground? Take \\(g = 9.8\\,\\mathrm{m/s^2}\\) and \\(v_0 = 0\\). Using \\(x = x_0 + v_0 t + \\frac{1}{2}at^2\\) with \\(x = 0\\): \\(\\;0 = 45 - \\frac{1}{2}(9.8)t^2\\), giving \\(t = \\sqrt{2 \\times 45 / 9.8} \\approx 3.03\\) s."
+          },
+          {
+            "kind": "para",
+            "text": "Projectile motion When we launch an object, the only acceleration is gravity downward, so horizontal velocity stays constant while vertical velocity changes uniformly:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[x(t) = v_0\\cos\\theta\\; t,\\qquad y(t) = v_0\\sin\\theta\\; t - \\tfrac{1}{2}g t^2\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Drag the sliders below the simulation to launch a projectile at different speeds and angles. Can you find the angle that maximizes range? Maximum range occurs at \\(\\theta = 45^\\circ\\) (when launch and landing heights match) because \\(\\sin 2\\theta\\) peaks at \\(90^\\circ\\)."
+          }
+        ]
+      },
+      {
+        "id": "newton",
+        "number": 2,
+        "title": "Newton's Laws of Motion",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "In 1687, Newton laid down three rules that still govern engineering today:"
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Newton's First Law (Inertia)",
+            "text": "— A body at rest stays at rest, and a body in motion stays in uniform straight-line motion, unless a net external force acts on it."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Newton's Second Law",
+            "text": "— The rate of change of momentum equals the net force: \\(\\vec{F}_{\\text{net}} = \\dfrac{d\\vec{p}}{dt}\\). For constant mass this becomes \\(\\vec{F} = m\\vec{a}\\)."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Newton's Third Law",
+            "text": "— For every action there is an equal and opposite reaction: \\(\\vec{F}_{AB} = -\\vec{F}_{BA}\\)."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{\\vec{F}_{\\text{net}} = m\\,\\vec{a}}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Concept Symbol Units Typical example Force \\(F\\) N (kg·m/s²) Weight of 1 kg mass Mass \\(m\\) kg Inertia to acceleration Acceleration \\(a\\) m/s² Free-fall: 9.8 m/s² Momentum \\(p\\) kg·m/s Moving car Caution: Newton's laws are valid only in inertial reference frames . In an accelerating car, a \"mysterious\" force flings you backward — but in an inertial frame that's just your inertia."
+          }
+        ]
+      },
+      {
+        "id": "energy",
+        "number": 3,
+        "title": "Energy & Work",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Work is force times the distance over which it acts: \\(W = \\vec{F}\\cdot\\vec{d} = Fd\\cos\\theta\\). It's the bridge between force and energy."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[W = \\int \\vec{F}\\cdot d\\vec{r}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Two forms of mechanical energy dominate classical mechanics:"
+          },
+          {
+            "kind": "para",
+            "text": "Kinetic energy : \\(K = \\tfrac{1}{2}mv^2\\) — energy of motion. Gravitational potential energy : \\(U = mgh\\) (near Earth's surface) or \\(U = -GMm/r\\) (general)."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Conservation of Energy",
+            "text": "— In an isolated system, total energy \\(E = K + U\\) is constant. Energy cannot be created or destroyed; it only transforms between forms."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[K_1 + U_1 = K_2 + U_2\\]"
+          },
+          {
+            "kind": "para",
+            "text": "This is powerful because it sidesteps tricky force vectors — we just track energy before and after."
+          }
+        ]
+      },
+      {
+        "id": "momentum",
+        "number": 4,
+        "title": "Momentum & Impulse",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Momentum \\(p = mv\\) captures \"how hard it is to stop\" a moving object. Impulse \\(J = \\Delta p = \\vec{F}_{\\text{avg}}\\,\\Delta t\\) is the push that changes momentum."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\vec{J} = \\Delta \\vec{p} = \\int \\vec{F}\\,dt\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Conservation of Momentum",
+            "text": "— If \\(\\vec{F}_{\\text{net, ext}} = 0\\), total momentum of a system is conserved: \\(\\sum \\vec{p}_{\\text{initial}} = \\sum \\vec{p}_{\\text{final}}\\)."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[m_1 \\vec{v}_{1i} + m_2 \\vec{v}_{2i} = m_1 \\vec{v}_{1f} + m_2 \\vec{v}_{2f}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "This holds even in collisions where kinetic energy is lost to heat or deformation — as long as no external force acts."
+          }
+        ]
+      },
+      {
+        "id": "rotation",
+        "number": 5,
+        "title": "Rotational Motion",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Rotational motion mirrors linear motion with angular analogs. Angle \\(\\theta\\) replaces position, angular velocity \\(\\omega = d\\theta/dt\\) replaces \\(v\\), and angular acceleration \\(\\alpha = d\\omega/dt\\) replaces \\(a\\)."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[v = r\\omega,\\qquad a_t = r\\alpha,\\qquad a_c = r\\omega^2\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The rotational analog of \\(F = ma\\) uses moment of inertia \\(I\\) and torque \\(\\tau\\):"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\tau = I\\alpha\\]"
+          },
+          {
+            "kind": "para",
+            "text": "r (lever arm) F · r = τ Torque = force applied at a distance from the pivot. A longer wrench produces more torque for the same force. Common moments of inertia:"
+          },
+          {
+            "kind": "para",
+            "text": "Object Axis \\(I\\) Solid sphere Through center \\(\\frac{2}{5}MR^2\\) Hollow sphere Through center \\(\\frac{2}{3}MR^2\\) Solid cylinder Through center \\(\\frac{1}{2}MR^2\\) Thin rod Through center, ⊥ rod \\(\\frac{1}{12}ML^2\\) Thin rod Through end, ⊥ rod \\(\\frac{1}{3}ML^2\\)"
+          }
+        ]
+      },
+      {
+        "id": "oscillations",
+        "number": 6,
+        "title": "Oscillations & Simple Harmonic Motion",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Simple harmonic motion (SHM) describes systems where a restoring force is proportional to displacement: \\(F = -kx\\). The solution is sinusoidal:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[x(t) = A\\cos(\\omega t + \\phi),\\qquad \\omega = \\sqrt{\\frac{k}{m}}\\]"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[T = \\frac{2\\pi}{\\omega} = 2\\pi\\sqrt{\\frac{m}{k}},\\qquad f = \\frac{1}{T}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "where \\(T\\) is the period , \\(f\\) the frequency, \\(A\\) the amplitude, and \\(\\phi\\) a phase offset."
+          },
+          {
+            "kind": "para",
+            "text": "A simple pendulum . Adjust length, gravity, and damping to see how the period \\(T = 2\\pi\\sqrt{L/g}\\) changes."
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Small-angle approximation.",
+            "text": "A real pendulum only obeys \\(T = 2\\pi\\sqrt{L/g}\\) when the swing angle is small (sin θ ≈ θ). Large swings are slower than the formula predicts — the simulation captures this."
+          },
+          {
+            "kind": "para",
+            "text": "Waves Many oscillators couple into waves . A traveling wave has the form \\(y(x,t) = A\\sin(kx - \\omega t + \\phi)\\), where \\(k = 2\\pi/\\lambda\\) is the wave number and \\(\\omega = 2\\pi f\\). The wave speed is \\(v = f\\lambda = \\omega/k\\)."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[y(x,t) = A\\sin\\!\\left(\\frac{2\\pi}{\\lambda}x - 2\\pi f\\, t + \\phi\\right)\\]"
+          },
+          {
+            "kind": "para",
+            "text": "In a standing wave , reflected waves interfere with incoming ones. Nodes (zero displacement) appear at \\(x = n\\lambda/2\\). This is why guitar strings of fixed length only play certain notes — the boundary condition selects allowed wavelengths. Key Takeaways Motion is described with position, velocity, and acceleration — the derivatives of \\(\\vec{r}(t)\\). \\(\\vec{F} = m\\vec{a}\\) is the master equation of mechanics, but only in inertial frames. Energy and momentum are conserved in isolated systems — powerful shortcuts past force diagrams. Rotational motion reuses linear formulas with \\(I\\), \\(\\tau\\), and \\(\\omega\\) replacing \\(m\\), \\(F\\), \\(v\\). Simple harmonic oscillators (\\(F = -kx\\)) and waves (\\(v = f\\lambda\\)) are everywhere in nature. 🔥 Next: Thermodynamics →"
+          },
+          {
+            "kind": "para",
+            "text": "Live seismology Real earthquakes recorded in the last 24 hours, magnitude 4.5 and above."
+          },
+          {
+            "kind": "para",
+            "text": "🌍 Recent significant earthquakes Source: USGS Earthquake Hazards Program — free, no key required."
+          },
+          {
+            "kind": "para",
+            "text": "Contacting the USGS earthquake feed…"
+          },
+          {
+            "kind": "para",
+            "text": "Physics Fundamentals — mechanics module. Back to topics ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "thermodynamics",
+    "title": "Thermodynamics",
+    "tagline": "Heat, entropy, and why time only runs one way",
+    "intro": "Heat, entropy, and why time only runs one way",
+    "icon": "🌡️",
+    "hue": 12,
+    "sections": [
+      {
+        "id": "temperature",
+        "number": 1,
+        "title": "Temperature & Thermal Equilibrium",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Temperature is a measure of how hot or cold something is, but more precisely it measures the average kinetic energy of the particles in a substance. When two objects touch, heat — energy transfer due to temperature difference — flows from the hotter to the colder until they reach the same temperature, thermal equilibrium ."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[T_{\\text{Celsius}} = T_{\\text{Kelvin}} - 273.15\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Thermal equilibrium",
+            "text": "— Two systems are in thermal equilibrium when, when placed in thermal contact, they no longer exchange heat. The zeroth law (transitivity of equilibrium) is what makes temperature a meaningful, measurable quantity."
+          }
+        ]
+      },
+      {
+        "id": "ideal-gas",
+        "number": 2,
+        "title": "The Ideal Gas Law",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Gases are collections of many particles bouncing around. In the ideal limit (no volume, no interactions), pressure, volume, and temperature are linked:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{PV = nRT = Nk_B T}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "where \\(n\\) is moles, \\(R = 8.314\\,\\text{J/(mol·K)}\\) is the gas constant, \\(N\\) is the number of molecules, and k_B is Boltzmann's constant. The combined gas law \\(PV/T = \\text{const}\\) is useful for comparing states."
+          },
+          {
+            "kind": "para",
+            "text": "An ideal gas in a box . Increase temperature to speed up particles (more collisions = higher pressure); increase particle count to see density effects. Walls are elastic barriers."
+          }
+        ]
+      },
+      {
+        "id": "kinetic-theory",
+        "number": 3,
+        "title": "Kinetic Theory of Gases",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "The ideal gas law becomes intuitive through kinetic theory. Pressure comes from particles slamming into the walls . Every translational degree of freedom carries average energy \\(\\tfrac{1}{2}k_BT\\):"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\tfrac{1}{2}m\\langle v^2\\rangle = \\tfrac{3}{2}k_B T,\\qquad \\langle v\\rangle = \\sqrt{\\frac{8k_BT}{\\pi m}},\\qquad v_{\\text{rms}} = \\sqrt{\\frac{3k_BT}{m}}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The root-mean-square speed tells us how fast molecules move on average. At room temperature, an oxygen molecule (\\(m \\approx 5\\times10^{-26}\\) kg) has \\(v_{\\text{rms}} \\approx 480\\) m/s — faster than the speed of sound!"
+          },
+          {
+            "kind": "callout",
+            "variant": "example",
+            "title": "Example.",
+            "text": "A helium atom (\\(m = 6.6\\times10^{-27}\\) kg) at \\(T=300\\) K. Find \\(v_{\\text{rms}}\\). \\(v_{\\text{rms}} = \\sqrt{3k_BT/m} = \\sqrt{3(1.38\\times10^{-23})(300)/(6.6\\times10^{-27})} \\approx 1360\\) m/s. Helium is the second-lightest element, so its atoms zip around nearly 3× faster than oxygen's."
+          }
+        ]
+      },
+      {
+        "id": "laws",
+        "number": 4,
+        "title": "The Four Laws of Thermodynamics",
+        "blocks": [
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Zeroth Law",
+            "text": "— If A is in thermal equilibrium with B, and B with C, then A is in equilibrium with C. (This is what makes thermometers work.)"
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "First Law (Energy Conservation)",
+            "text": "— Energy is conserved. Heat \\(Q\\) added to a system minus work \\(W\\) done by the system equals the change in internal energy: \\(\\Delta U = Q - W\\). For an ideal gas, \\(U = \\tfrac{3}{2}Nk_BT\\) (depends only on temperature)."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{\\Delta U = Q - W}\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Second Law",
+            "text": "— The total entropy of an isolated system never decreases; heat never flows spontaneously from cold to hot. Equivalently: no engine can convert heat completely into work without other effect."
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Why the Second Law is special.",
+            "text": "The first law is time-symmetric — you can reverse a movie of a billiard ball bouncing and the physics still looks fine. But reverse a movie of an egg splattering and the yolk spreading, and everyone sees the difference. The Second Law introduces an irreversibility — the famous \"arrow of time\" — that the underlying microscopic laws (which are themselves time-reversible) somehow produce in bulk."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Third Law",
+            "text": "— As \\(T \\to 0\\) K, the entropy of a perfect crystal approaches zero. (You can get close to absolute zero, but never reach it.)"
+          },
+          {
+            "kind": "para",
+            "text": "Law Statement Key implication Zeroth Transitivity of equilibrium Temperature is well-defined First \\(\\Delta U = Q - W\\) No free energy; perpetual motion impossible Second \\(\\Delta S \\ge 0\\) (isolated) Processes are irreversible Third \\(S \\to 0\\) as \\(T \\to 0\\) Absolute zero unreachable"
+          }
+        ]
+      },
+      {
+        "id": "entropy",
+        "number": 5,
+        "title": "Entropy & the Arrow of Time",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Entropy \\(S\\) counts the number of microscopic states (the multiplicity \\(\\Omega\\)) that correspond to a macrostate:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[S = k_B \\ln \\Omega\\]"
+          },
+          {
+            "kind": "para",
+            "text": "This is Boltzmann's tombstone equation. It connects the macroscopic, everyday notion of \"disorder\" to the microscopic reality of atoms jiggling. Consider a box of gas initially confined to one side; when the partition opens, the gas spreads to fill the whole box. The number of accessible positions (and hence \\(\\Omega\\)) jumps enormously — entropy increases, even though every molecule obeys reversible Newton's laws."
+          },
+          {
+            "kind": "para",
+            "text": "Before: low entropy particles crowded opens After: high entropy particles spread out Entropy increases when a gas spreads from a confined region to fill its container — the same thing that makes a hot cup of coffee cool down."
+          }
+        ]
+      },
+      {
+        "id": "engines",
+        "number": 6,
+        "title": "Heat Engines & Efficiency",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "A heat engine absorbs heat \\(Q_H\\) from a hot reservoir, converts some into work \\(W\\), and dumps waste \\(Q_C\\) into a cold reservoir. The efficiency \\(\\eta\\) is how much of that heat becomes useful work."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\eta = \\frac{W}{Q_H} = 1 - \\frac{Q_C}{Q_H}\\]"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\eta_{\\text{Carnot}} = 1 - \\frac{T_C}{T_H}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The Carnot efficiency is the theoretical maximum for any engine operating between two temperatures (in Kelvin). Real engines fall far below it — a car's internal combustion engine is typically ~25% efficient, limited by material temperatures and friction."
+          },
+          {
+            "kind": "para",
+            "text": "Refrigerators reverse the flow. A refrigerator does work to move heat from cold to hot , which is the opposite of natural flow. That's why your fridge's back coils feel warm — it's dumping the extracted heat (plus the work done by the compressor) into your kitchen. The coefficient of performance \\(\\text{COP} = Q_C / W\\) measures how much cooling you get per unit of electrical work. Key Takeaways Heat and work are both energy in transit — heat is microscopic energy transfer, work is organized energy transfer. The ideal gas law \\(PV = nRT\\) is the workhorse of classical thermodynamics; kinetic theory explains it microscopically. Energy is conserved (First Law), but entropy of isolated systems only grows (Second Law) — this is the source of the thermodynamic arrow of time. No engine beats a Carnot engine; efficiency is fundamentally capped by the temperatures of the reservoirs. Absolute zero is a limit, not a reachable destination (Third Law). ⚡ Next: Electromagnetism →"
+          },
+          {
+            "kind": "para",
+            "text": "Physics Fundamentals — thermodynamics module. Back to topics ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "electromagnetism",
+    "title": "Electromagnetism",
+    "tagline": "Charges, fields, and the light that carries both",
+    "intro": "Charges, fields, and the light that carries both",
+    "icon": "⚡",
+    "hue": 45,
+    "sections": [
+      {
+        "id": "charge",
+        "number": 1,
+        "title": "Electric Charge & Coulomb's Law",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Electric charge is the fundamental property that makes objects attract or repel. There are two kinds — positive and negative — and unlike charges attract while like charges repel. Charge is quantized in units of the elementary charge \\(e = 1.602\\times10^{-19}\\) C."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{F = k_e\\frac{|q_1 q_2|}{r^2} = \\frac{1}{4\\pi\\varepsilon_0}\\frac{q_1 q_2}{r^2}}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "This is Coulomb's law : the electric force is proportional to the product of the charges and inversely proportional to the square of their separation. By contrast with gravity (always attractive), electric forces can attract or repel — and they're roughly 10³⁶ times stronger!"
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Conservation of charge",
+            "text": "— The total charge in an isolated system is constant. You can transfer charge, but you can't create or destroy net charge (charge density can cancel to zero, but the total is conserved)."
+          }
+        ]
+      },
+      {
+        "id": "field",
+        "number": 2,
+        "title": "Electric Fields & Potential",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "To avoid \"action at a distance,\" we say a charge \\(q\\) creates an electric field \\(\\vec{E}\\) that exerts a force \\(\\vec{F} = q\\vec{E}\\) on any other charge. Field lines point away from positive charges and toward negative ones."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\vec{E}(\\vec{r}) = \\frac{1}{4\\pi\\varepsilon_0}\\sum_i \\frac{q_i(\\vec{r}-\\vec{r}_i)}{|\\vec{r}-\\vec{r}_i|^3},\\qquad \\vec{F} = q\\vec{E}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Because the electric force is conservative , we can define a scalar electric potential \\(V\\) such that \\(\\vec{E} = -\\nabla V\\):"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[V = \\frac{U}{q},\\qquad \\Delta V = -\\int \\vec{E}\\cdot d\\vec{l}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Voltage is potential difference. A battery maintains a steady \\(\\Delta V\\), pushing charges through a circuit."
+          },
+          {
+            "kind": "para",
+            "text": "Electric field lines from two charges. Drag the sliders to flip charge signs and change separation. Field arrows (lines) show the direction a positive test charge would move; denser lines mean stronger field."
+          }
+        ]
+      },
+      {
+        "id": "circuits",
+        "number": 3,
+        "title": "Current, Resistance & Circuits",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Current \\(I\\) is the rate of charge flow. Ohm's law \\(V = IR\\) relates voltage, current, and resistance for ohmic materials, where resistance depends on geometry and material:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[R = \\rho\\frac{L}{A},\\qquad V = IR,\\qquad P = IV\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Think of electricity like water.",
+            "text": "Voltage is like water pressure (height of a reservoir), current is like flow rate (liters per second), and resistance is like a narrow pipe. A battery is a pump that maintains pressure even as water flows."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\text{Series: } R_{\\text{eq}} = \\sum R_i \\quad\\quad \\text{Parallel: } \\frac{1}{R_{\\text{eq}}} = \\sum \\frac{1}{R_i}\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "example",
+            "title": "Example.",
+            "text": "Two 100 Ω resistors in parallel across a 12 V battery. Equivalent resistance: \\(1/R_{\\text{eq}} = 1/100 + 1/100 = 2/100\\), so \\(R_{\\text{eq}} = 50\\) Ω. Current: \\(I = V/R = 12/50 = 0.24\\) A. Power dissipated: \\(P = IV = 2.88\\) W."
+          }
+        ]
+      },
+      {
+        "id": "magnetism",
+        "number": 4,
+        "title": "Magnetism & the Biot-Savart Law",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Whereas stationary electric charges create electric fields, moving charges (currents) create magnetic fields . The Biot-Savart law gives the field from a small current element:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\vec{B} = \\frac{\\mu_0}{4\\pi}\\int \\frac{I\\,d\\vec{\\ell}\\times\\hat{r}}{r^2}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "A charge \\(q\\) moving at velocity \\(\\vec{v}\\) in a magnetic field feels the Lorentz force \\(\\vec{F} = q\\vec{v}\\times\\vec{B}\\), which is always perpendicular to velocity — so it bends trajectories without changing speed. This is why the aurora curves along Earth's magnetic field lines."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Faraday's law of induction",
+            "text": "— A changing magnetic flux \\(\\Phi_B\\) induces an electromotive force: \\(\\mathcal{E} = -d\\Phi_B/dt\\). This is the principle behind generators, transformers, and induction cooktops."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\mathcal{E} = -\\frac{d\\Phi_B}{dt},\\qquad \\Phi_B = \\int \\vec{B}\\cdot d\\vec{A}\\]"
+          }
+        ]
+      },
+      {
+        "id": "maxwell",
+        "number": 5,
+        "title": "Maxwell's Equations",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "James Clerk Maxwell (1865) gathered the laws of electricity and magnetism into four equations. In differential form, in vacuum:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\begin{aligned} \\nabla\\cdot\\vec{E} &= \\frac{\\rho}{\\varepsilon_0} & &\\text{(Gauss's law — electric charges make E-fields)}\\\\\\\\ \\nabla\\cdot\\vec{B} &= 0 & &\\text{(No magnetic monopoles)}\\\\\\\\ \\nabla\\times\\vec{E} &= -\\frac{\\partial\\vec{B}}{\\partial t} & &\\text{(Faraday — changing B makes E)}\\\\\\\\ \\nabla\\times\\vec{B} &= \\mu_0\\vec{J} + \\mu_0\\varepsilon_0\\frac{\\partial\\vec{E}}{\\partial t} & &\\text{(Ampère–Maxwell)} \\end{aligned}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The displacement current is Maxwell's genius stroke. Ampère's original law had a gap: it worked for steady currents but broke down for time-varying fields (like the charging capacitor, where current flows into a plate but not through the gap). Maxwell added the \\(\\mu_0\\varepsilon_0\\,\\partial\\vec{E}/\\partial t\\) term — a current made of changing electric fields . With this fix, the equations predict self-sustaining waves that travel exactly at \\(c = 1/\\sqrt{\\mu_0\\varepsilon_0} = 3\\times10^8\\) m/s. Light is an electromagnetic wave. Symbol Meaning Value \\(\\varepsilon_0\\) Vacuum permittivity \\(8.854\\times10^{-12}\\) F/m \\(\\mu_0\\) Vacuum permeability \\(4\\pi\\times10^{-7}\\) H/m \\(c\\) Speed of light \\(2.998\\times10^8\\) m/s \\(k_e\\) Coulomb constant \\(8.988\\times10^9\\) N·m²/C²"
+          }
+        ]
+      },
+      {
+        "id": "optics",
+        "number": 6,
+        "title": "Light, Waves & Optics",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Light is a transverse electromagnetic wave with wavelength \\(\\lambda\\) and frequency \\(f\\) related by \\(c = \\lambda f\\). The electromagnetic spectrum spans radio waves (kilometers long) to gamma rays (picometers), with visible light a narrow 400–700 nm band in between."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\vec{E}(x,t) = E_0\\sin(kx - \\omega t),\\qquad c = \\frac{1}{\\sqrt{\\mu_0\\varepsilon_0}} = \\lambda f\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Refraction follows Snell's law, \\(n_1\\sin\\theta_1 = n_2\\sin\\theta_2\\), where \\(n = c/v\\) is the index of refraction. Reflection , diffraction , and interference reveal light's wave nature — confirmed decisively by Young's double-slit experiment in 1801."
+          },
+          {
+            "kind": "para",
+            "text": "interface (air/glass) incident ray refracted ray n₁sinθ₁ = n₂sinθ₂ Snell's law: light bends toward the normal when entering a higher-index medium (glass). The angle of incidence equals the angle of reflection. Key Takeaways Electric charges create fields; like charges repel, opposite charges attract. The force falls as \\(1/r^2\\) (Coulomb). \\(\\vec{F} = q\\vec{E}\\) and \\(V = U/q\\) turn the force law into the elegant language of fields and potentials. Maxwell's four equations unify electricity and magnetism — and predict that light is an electromagnetic wave traveling at \\(c = 1/\\sqrt{\\mu_0\\varepsilon_0}\\). Time-varying fields produce waves: this is how radio, Wi-Fi, and eyes themselves all work. Reflection, refraction, interference, and diffraction are all wave phenomena with everyday applications from lenses to fiber optics. 〰️ Next: Waves & Oscillations →"
+          },
+          {
+            "kind": "para",
+            "text": "Physics Fundamentals — electromagnetism module. Back to topics ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "waves",
+    "title": "Waves & Oscillations",
+    "tagline": "Everything that repeats: sound, light, and the ocean",
+    "intro": "Everything that repeats: sound, light, and the ocean",
+    "icon": "🌊",
+    "hue": 190,
+    "sections": [
+      {
+        "id": "wave-equation",
+        "number": 1,
+        "title": "The Wave Equation",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "A wave is a disturbance that transfers energy without transporting matter. A wave is described by its amplitude \\(A\\), wavelength \\(\\lambda\\), frequency \\(f\\), and speed \\(v = f\\lambda\\):"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{y(x,t) = A\\sin(kx - \\omega t + \\phi)}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "where \\(k = 2\\pi/\\lambda\\) is the wave number and \\(\\omega = 2\\pi f\\) is the angular frequency. For a string under tension \\(T\\) with linear density \\(\\mu\\), the speed is \\(v = \\sqrt{T/\\mu}\\). The general one-dimensional wave equation is:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\frac{\\partial^2 y}{\\partial t^2} = v^2 \\frac{\\partial^2 y}{\\partial x^2}\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Transverse vs longitudinal waves.",
+            "text": "In a transverse wave, the displacement is perpendicular to propagation (like a wave on a string or light). In a longitudinal wave, displacement is parallel (like sound in air — compressions and rarefactions)."
+          }
+        ]
+      },
+      {
+        "id": "superposition",
+        "number": 2,
+        "title": "Superposition & Interference",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "When two waves meet, they superpose — their amplitudes add. This leads to interference : constructive (in phase, amplitudes add) where peaks align, and destructive (out of phase, amplitudes cancel) where a peak meets a trough."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[y_{\\text{total}} = y_1 + y_2 = 2A\\cos\\!\\left(\\tfrac{\\Delta\\phi}{2}\\right)\\sin\\!\\left(\\bar{k}x - \\bar{\\omega}t + \\bar{\\phi}\\right)\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Thomas Young's double-slit experiment (1801) demonstrated light's wave nature: alternating bright and dark fringes appear because light from the two slits travels different distances to each point on the screen, creating varying path differences \\(\\Delta L = d\\sin\\theta\\)."
+          },
+          {
+            "kind": "para",
+            "text": "Two-source interference . Two coherent wave sources emit circular waves. Where crests meet crests (constructive), bright bands appear; where crest meets trough (destructive), they cancel. Drag the sliders to change separation, frequency, and wave speed."
+          }
+        ]
+      },
+      {
+        "id": "standing",
+        "number": 3,
+        "title": "Standing Waves & Resonance",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "When a wave reflects and travels back, it interferes with itself. At resonant frequencies , the reflected wave reinforces the incoming one, creating standing waves with fixed nodes (zero displacement) and antinodes (maximum displacement). Only wavelengths \\(\\lambda_n = 2L/n\\) fit on a string of length \\(L\\) fixed at both ends:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[f_n = \\frac{n}{2L}\\sqrt{\\frac{T}{\\mu}},\\qquad n = 1, 2, 3, \\dots\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The fundamental (\\(n=1\\)) is the lowest note; higher harmonics (\\(n=2, 3, \\ldots\\)) give the instrument its timbre . This is why a guitar and a violin playing the same note sound different — their overtone mixtures differ."
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Bridge of physical intuition.",
+            "text": "The same math governs acoustic pipes, laser cavities, and even quantum particles in a box (see the Quantum section). Resonance is everywhere: the Tacoma Narrows Bridge collapse (1940), microwave ovens (water molecules resonate at 2.45 GHz), and the Schumann resonance (Earth's cavity rings at ~7.8 Hz)."
+          }
+        ]
+      },
+      {
+        "id": "sound",
+        "number": 4,
+        "title": "Sound Waves",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Sound is a longitudinal pressure wave in a medium. Its speed in air at 0°C is 331 m/s and increases ~0.6 m/s per °C: \\(v_{\\text{sound}} \\approx 331 + 0.6T_{\\text{°C}}\\). The decibel scale measures intensity logarithmically:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\beta = 10\\log_{10}\\!\\left(\\frac{I}{I_0}\\right),\\qquad I_0 = 10^{-12}\\text{ W/m}^2\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Human hearing spans roughly 20 Hz to 20 kHz and 0 to 120 dB (beyond which lies pain and then physical damage). Pitch maps to frequency, loudness to amplitude, and timbre to harmonic content."
+          }
+        ]
+      },
+      {
+        "id": "doppler",
+        "number": 5,
+        "title": "The Doppler Effect",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "When a wave source moves relative to an observer, the observed frequency shifts: blueshift (approaching) raises pitch/frequency, redshift (receding) lowers it. For sound with a stationary observer and moving source:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{f' = f\\frac{v_{\\text{sound}}}{v_{\\text{sound}} \\mp v_s}}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The minus sign applies as the source approaches (frequency up), the plus as it recedes. The same principle applied to light gives astronomical redshift \\(z = \\Delta\\lambda/\\lambda\\), which Edwin Hubble used to discover the expansion of the universe: more distant galaxies recede faster, \\(v = H_0 d\\)."
+          },
+          {
+            "kind": "para",
+            "text": "source compressed (shorter λ) expanded (longer λ) f' = f · v/(v ∓ vs) The Doppler effect: wavefronts compress ahead of a moving source (higher frequency, blueshift) and stretch behind it (lower frequency, redshift). Key Takeaways Waves transfer energy without transporting matter; they are described by \\(y = A\\sin(kx-\\omega t+\\phi)\\) with speed \\(v = f\\lambda\\). Superposition makes waves add — constructive and destructive interference create patterns seen in water ripples, sound, and light. Standing waves arise from interference of reflected waves; boundary conditions pick natural frequencies (resonance) — the basis of all musical instruments. Sound is a longitudinal pressure wave; the decibel scale compresses its enormous intensity range into a human-relevant scale. The Doppler effect — frequency shifts from relative motion — connects a passing ambulance's siren to the expansion of the universe. ⚛️ Next: Quantum Mechanics →"
+          },
+          {
+            "kind": "para",
+            "text": "Physics Fundamentals — waves module. Back to topics ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "quantum",
+    "title": "Quantum Mechanics",
+    "tagline": "Probability, uncertainty, and rules that will not bend",
+    "intro": "Probability, uncertainty, and rules that will not bend",
+    "icon": "⚛️",
+    "hue": 268,
+    "sections": [
+      {
+        "id": "blackbody",
+        "number": 1,
+        "title": "The Crisis That Started It All",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "By 1900, classical physics — Maxwell's equations and thermodynamics — was triumphant. But it faced a fatal flaw: blackbody radiation . When physicists tried to calculate the energy radiated by a hot object, classical theory predicted infinite energy at short wavelengths — the ultraviolet catastrophe . In 1900, Max Planck solved it by proposing a desperate fix: energy is emitted in discrete chunks."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{E = nh\\nu = n\\hbar\\omega}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Energy of frequency \\(\\nu\\) comes in multiples of \\(h\\nu\\) — a quantum (plural: quanta). Planck called this a mathematical trick, unaware it was the birth of a revolution. A year later, Einstein applied the same idea to light itself, explaining the photoelectric effect :"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[hf = W_0 + K_{\\text{max}}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Light of frequency \\(f\\) ejects electrons from metal, but only if \\(hf\\) exceeds the work function \\(W_0\\) — no matter how intense the light. Brighter light gives more electrons, but each with the same maximum energy. Light is made of particles — photons ."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Constants of quantum mechanics.",
+            "text": "Planck's constant \\(h = 6.626\\times10^{-34}\\) J·s is the quantum of action. The reduced constant \\(\\hbar = h/2\\pi = 1.055\\times10^{-34}\\) J·s appears in almost every quantum formula."
+          }
+        ]
+      },
+      {
+        "id": "wave-particle",
+        "number": 2,
+        "title": "Wave–Particle Duality",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "If light is a particle, then surely electrons are particles too — right? The Davisson–Germer experiment (1927) fired electrons at a nickel crystal and found they diffracted, producing interference patterns — unmistakable wave behavior. de Broglie proposed that everything has a wavelength:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{\\lambda_{\\text{dB}} = \\frac{h}{p}}\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "A profound symmetry of nature.",
+            "text": "Photons (light) are particle-like; electrons are wave-like. But both can behave as either. The question isn't \"is it a wave or a particle?\" — it's neither. Quantum entities are something deeper, revealed to us only through the approximations our classical minds and instruments impose."
+          },
+          {
+            "kind": "para",
+            "text": "For a baseball, \\(\\lambda_{\\text{dB}}\\) is absurdly small (\\(10^{-34}\\) m) — that's why we never see baseballs diffracting. But for an electron with 1 eV of energy, \\(\\lambda \\approx 1.2\\) nm — comparable to atomic spacings, making electron microscopes possible."
+          }
+        ]
+      },
+      {
+        "id": "schrodinger",
+        "number": 3,
+        "title": "The Schrödinger Equation",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "In 1926, Erwin Schrödinger wrote the equation that governs how quantum states evolve. It is the quantum version of Newton's \\(F=ma\\) — a differential equation for the wavefunction \\(\\Psi(x,t)\\):"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{i\\hbar\\frac{\\partial\\Psi}{\\partial t} = \\hat{H}\\Psi = \\left(-\\frac{\\hbar^2}{2m}\\nabla^2 + V\\right)\\Psi}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The wave function \\(\\Psi\\) is a probability amplitude . The Born rule says \\(|\\Psi|^2\\) gives the probability density of finding the particle at a given location. The square modulus \\(|\\Psi|^2\\) is always real and positive — probabilities add up to 1."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\int |\\Psi(x)|^2\\,dx = 1\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "example",
+            "title": "The particle in a box.",
+            "text": "Confine a particle to a region \\([0,L]\\) with infinite walls (\\(V=\\infty\\) outside). Inside, \\(V=0\\) and the solutions are standing waves: \\(\\Psi_n(x) = \\sqrt{2/L}\\sin(n\\pi x/L)\\) with energies \\(E_n = n^2 h^2/(8mL^2)\\), \\(n=1,2,3,\\ldots\\) The energy is quantized — only specific values are allowed. This explains why atoms have discrete energy levels and emit light only at specific frequencies."
+          }
+        ]
+      },
+      {
+        "id": "uncertainty",
+        "number": 4,
+        "title": "The Uncertainty Principle",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Werner Heisenberg showed that quantum mechanics has a fundamental limit on what we can know simultaneously. The more precisely we know a particle's position, the less precisely we can know its momentum, and vice versa:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{\\Delta x\\,\\Delta p \\ge \\frac{\\hbar}{2}}\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Uncertainty is not measurement error.",
+            "text": "This is not a limitation of our instruments. It's a statement about the quantum state itself — position and momentum are fundamentally linked quantities. A particle doesn't have a definite position and momentum simultaneously; the wavefunction encodes probabilities for each."
+          },
+          {
+            "kind": "para",
+            "text": "Another uncertainty relation links energy and time: \\(\\Delta E\\,\\Delta t \\ge \\hbar/2\\). This lets particles \"borrow\" energy from the vacuum for fleeting moments — the basis of virtual particles and the Casimir effect."
+          }
+        ]
+      },
+      {
+        "id": "tunneling",
+        "number": 5,
+        "title": "Quantum Tunneling",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Classically, if you roll a ball at a hill and it doesn't have enough energy to crest the top, it rolls back. In quantum mechanics, the wavefunction doesn't drop to zero instantly — it evanesces into the barrier, giving a small probability the particle appears on the other side. This is tunneling — a purely quantum phenomenon with no classical analog."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[T \\approx e^{-2\\kappa a},\\qquad \\kappa = \\sqrt{\\frac{2m(V - E)}{\\hbar^2}}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The transmission probability decreases exponentially with barrier width \\(a\\) and height \\((V-E)\\). Tunneling is essential to stellar fusion (the Sun's energy!), scanning tunneling microscopes, and radioactive decay."
+          },
+          {
+            "kind": "para",
+            "text": "Quantum tunneling. A wave packet (blue) approaches a barrier (orange). Classically the particle would bounce back, but quantum mechanics gives it a small chance to appear on the other side. Adjust the particle energy \\(E\\) and barrier height \\(V\\) to see how the transmission probability \\(T\\) changes."
+          }
+        ]
+      },
+      {
+        "id": "measurement",
+        "number": 6,
+        "title": "The Measurement Problem",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "If a quantum system can be in multiple states at once — the famous superposition — what happens when we measure it? Schrödinger's cat is simultaneously alive and dead (a poison vial triggered by a quantum random event), until the box is opened and the cat is found in one definite state. The collapse of the wavefunction is mysterious and has spawned decades of debate."
+          },
+          {
+            "kind": "para",
+            "text": "cat vial closed box: |alive⟩ + |dead⟩ open lid Schrödinger's cat: the quintessential paradox showing how quantum superpositions clash with macroscopic reality. Different interpretations offer different answers, none yet testable: the Copenhagen view (wavefunction collapses when observed), many-worlds (all branches are real, you split into each outcome), QBism , and others. What's certain is that quantum mechanics is the most precisely tested theory in science — every prediction checked so far matches experiment to extraordinary precision."
+          },
+          {
+            "kind": "para",
+            "text": "Key Takeaways Planck's quantum hypothesis (\\(E = nh\\nu\\)) ended the ultraviolet catastrophe and introduced energy quantization. Everything has a wavelength \\(\\lambda = h/p\\); particles and waves are two aspects of the same reality — wave–particle duality. The Schrödinger equation \\(i\\hbar\\,\\partial_t\\Psi = \\hat{H}\\Psi\\) governs quantum states; \\(|\\Psi|^2\\) gives probabilities (Born rule). Heisenberg's uncertainty principle (\\(\\Delta x\\,\\Delta p \\ge \\hbar/2\\)) is a fundamental feature, not a limitation. Quantum tunneling lets particles cross classically forbidden barriers — essential to fusion stars and modern electronics. Measurement collapses superpositions, spawning decades of interpretation without consensus. 🌌 Next: Relativity →"
+          },
+          {
+            "kind": "para",
+            "text": "Physics Fundamentals — quantum mechanics module. Back to topics ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "relativity",
+    "title": "Relativity",
+    "tagline": "Space and time as a single woven fabric",
+    "intro": "Space and time as a single woven fabric",
+    "icon": "🌌",
+    "hue": 210,
+    "sections": [
+      {
+        "id": "inertial",
+        "number": 1,
+        "title": "The Two Postulates",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Inertial reference frames are those moving at constant velocity relative to each other. Before Einstein, physicists believed there was an absolute rest frame (the \"aether\"). Einstein's special relativity (1905) rests on two bold postulates:"
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Postulate 1 (Principle of Relativity)",
+            "text": "— The laws of physics are the same in every inertial frame. No inertial experiment can tell you whether you're \"really\" moving."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Postulate 2 (Invariance of \\(c\\))",
+            "text": "— The speed of light in vacuum, \\(c = 299{,}792{,}458\\) m/s, is the same for all observers, regardless of the motion of the source or the observer."
+          },
+          {
+            "kind": "para",
+            "text": "The second postulate is the shock. In everyday life, speeds add: if you walk 3 mph forward on a train going 60 mph, someone on the platform sees you at 63 mph. But light doesn't work that way. If you shine a flashlight forward on a train going 0.9\\(c\\), both you and the platform watcher measure the light beam at exactly \\(c\\) — not \\(1.9c\\). Space and time must bend to keep this true."
+          },
+          {
+            "kind": "callout",
+            "variant": "example",
+            "title": "The futility of catching up to light.",
+            "text": "Nothing with mass can reach \\(c\\). As an object's speed approaches \\(c\\), its relativistic factor \\(\\gamma = 1/\\sqrt{1-v^2/c^2}\\) blows up to infinity, requiring infinite energy to accelerate further. Photons (massless) travel at \\(c\\); everything else travels below it."
+          }
+        ]
+      },
+      {
+        "id": "lorentz",
+        "number": 2,
+        "title": "Time, Length & the Lorentz Transform",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "To keep \\(c\\) constant across frames, space and time mix together. The Lorentz factor \\(\\gamma\\) governs all relativistic effects:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\gamma = \\frac{1}{\\sqrt{1 - v^2/c^2}}\\]"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\Delta t' = \\gamma\\,\\Delta t\\qquad\\text{(time dilation)}\\qquad L' = \\frac{L_0}{\\gamma}\\qquad\\text{(length contraction)}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Time dilation : a clock in motion ticks slower by factor \\(\\gamma\\). Length contraction : objects shrink along their direction of motion by \\(\\gamma\\). These are not illusions — they're real, measurable effects. The GPS satellites orbiting Earth experience both: their clocks run fast by 45 μs/day due to weaker gravity (general relativity), but slow by 7 μs/day due to their speed (special relativity). Without relativistic corrections, GPS would drift by kilometers within hours."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\begin{pmatrix} ct' \\\\ x' \\end{pmatrix} = \\begin{pmatrix} \\gamma & -\\gamma\\beta \\\\ -\\gamma\\beta & \\gamma \\end{pmatrix}\\begin{pmatrix} ct \\\\ x \\end{pmatrix},\\qquad \\beta = v/c\\]"
+          }
+        ]
+      },
+      {
+        "id": "light-clock",
+        "number": 3,
+        "title": "The Light-Clock Thought Experiment",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "The cleanest way to see time dilation: imagine a clock made of two mirrors with a photon bouncing between them. In the clock's rest frame, the photon travels a vertical path of length \\(L\\) each tick. But to a watcher moving past, the photon traces a longer diagonal path. Since light travels at the same speed \\(c\\) in both frames, the moving observer sees the photon travel further — and since speed is the same, the ticks must take longer :"
+          },
+          {
+            "kind": "para",
+            "text": "Light clock and time dilation. On the left, a clock at rest with a photon bouncing between mirrors. On the right, the same clock as seen by a fast-moving observer: the photon now travels a longer diagonal path at the same speed \\(c\\), so each tick takes longer by the factor \\(\\gamma\\). Adjust velocity to see how the effect grows as \\(v\\) approaches \\(c\\)."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\Delta t' = \\gamma\\,\\Delta t = \\frac{\\Delta t}{\\sqrt{1-v^2/c^2}}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "This is the only relativity thought-experiment I know of that has a ready-made simulation. The derivation is pure geometry: a right triangle with legs \\(L\\) (half the vertical bounce) and \\(v\\,\\Delta t'/2\\) (horizontal drift), hypotenuse \\(c\\,\\Delta t'/2\\), giving \\(\\gamma\\) by Pythagoras."
+          }
+        ]
+      },
+      {
+        "id": "spacetime",
+        "number": 4,
+        "title": "Spacetime & the Invariant Interval",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Hermann Minkowski (1908) realized Einstein's equations reveal a deeper truth: space and time aren't separate. They fuse into a four-dimensional spacetime . Events are labeled by \\((ct, x, y, z)\\). The Lorentz transforms are rotations in spacetime, mixing the time and space coordinates just as a ordinary rotation mixes \\(x\\) and \\(y\\) axes."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{ds^2 = -c^2 dt^2 + dx^2 + dy^2 + dz^2}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "This is the invariant interval \\(ds^2\\): every observer, regardless of motion, agrees on its value. It's the spacetime analogue of the Pythagorean distance. The minus sign on the time component (the \"mostly-plus\" metric) is what makes timelike and spacelike intervals fundamentally different, and sets a cosmic speed limit."
+          },
+          {
+            "kind": "para",
+            "text": "x ct worldline (at rest) worldline (moving) light cone A spacetime diagram: vertical axis is time (\\(ct\\)), horizontal is space (\\(x\\)). Straight lines are object worldlines. The dashed red 45° lines are light cones — nothing inside can escape to outside."
+          }
+        ]
+      },
+      {
+        "id": "general",
+        "number": 5,
+        "title": "General Relativity: Gravity as Curvature",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "In 1915, Einstein extended relativity to accelerating frames and gravity. The key insight: gravity isn't a force — it's the curvature of spacetime caused by mass and energy. Objects in free fall aren't being \"pulled\"; they're following the straightest possible paths through curved geometry. The Einstein field equations relate curvature to the matter that creates it:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{G_{\\mu\\nu} = \\frac{8\\pi G}{c^4}\\,T_{\\mu\\nu}}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The left side (\\(G_{\\mu\\nu}\\), the Einstein tensor) describes how spacetime curves. The right side (\\(T_{\\mu\\nu}\\), the energy-momentum tensor) describes where mass, energy, and momentum are. They are equal — curved spacetime tells matter how to move; matter tells spacetime how to curve."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Equivalence principle. There is no local experiment that can distinguish free fall in a gravitational field from floating in empty space. This is why an astronaut in orbit feels weightless — they and the spacecraft are both following the same straightest path through curved spacetime. \\[r_s = \\frac{2GM}{c^2}\\qquad\\text{(Schwarzschild radius / event horizon)}\\] Testable predictions.",
+            "text": "General relativity made three verified predictions that Newton couldn't explain: (1) the bending of starlight by the Sun (1919 Eddington expedition — the famous \"eclipse\" result), (2) the anomalous perihelion advance of Mercury (43 arcseconds/century unexplained by Newtonian gravity), and (3) gravitational redshift (light loses energy climbing out of a gravity well)."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[r_s = \\frac{2GM}{c^2}\\qquad\\text{(Schwarzschild radius / event horizon)}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Testable predictions. General relativity made three verified predictions that Newton couldn't explain: (1) the bending of starlight by the Sun (1919 Eddington expedition — the famous \"eclipse\" result), (2) the anomalous perihelion advance of Mercury (43 arcseconds/century unexplained by Newtonian gravity), and (3) gravitational redshift (light loses energy climbing out of a gravity well)."
+          }
+        ]
+      },
+      {
+        "id": "cosmology",
+        "number": 6,
+        "title": "Cosmology & Black Holes",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Einstein's equations applied to the universe as a whole give the Friedmann equations . In 1929, Hubble confirmed what these equations predicted: the universe is expanding . Run the clock backward, and everything was denser — the Big Bang ."
+          },
+          {
+            "kind": "para",
+            "text": "When enough mass concentrates in one place, spacetime curves so severely that not even light can escape — a black hole . The boundary is the event horizon at the Schwarzschild radius \\(r_s = 2GM/c^2\\). Inside, all future paths lead to the singularity."
+          },
+          {
+            "kind": "para",
+            "text": "us galaxies recede: v = H₀·d Hubble's law: more distant galaxies recede faster, evidence that the universe began in a hot, dense state. Key Takeaways The speed of light \\(c\\) is constant for all observers, which forces space and time to mix — leading to time dilation and length contraction. Space and time are unified into 4D spacetime; the interval \\(ds^2\\) is invariant, and Lorentz transforms are rotations in this geometry. Gravity is not a force but the curvature of spacetime — Einstein's equation \\(G_{\\mu\\nu} = (8\\pi G/c^4)T_{\\mu\\nu}\\) links matter to geometry. General relativity's predictions — light bending, Mercury's orbit, gravitational redshift — are confirmed to high precision. Cosmological solutions gave us the Big Bang and the expanding universe; extreme curvature produces black holes and event horizons. 🌠 Next: Modern Physics →"
+          },
+          {
+            "kind": "para",
+            "text": "Physics Fundamentals — relativity module. Back to topics ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "modern-physics",
+    "title": "Modern Physics",
+    "tagline": "Atoms, nuclei, and the Standard Model",
+    "intro": "Atoms, nuclei, and the Standard Model",
+    "icon": "🌠",
+    "hue": 300,
+    "sections": [
+      {
+        "id": "atomic",
+        "number": 1,
+        "title": "Atomic Models & the Bohr Model",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "By the early 1900s, experiments revealed that atoms were mostly empty space with a tiny, dense nucleus. Rutherford's gold-foil experiment (1911) fired alpha particles at thin gold — most sailed through, but a few bounced straight back, proving the nucleus was both dense and small . But why don't orbiting electrons spiral into the nucleus, radiating away energy as Maxwell's equations demand?"
+          },
+          {
+            "kind": "para",
+            "text": "Niels Bohr (1913) proposed a radical fix: only certain orbits are allowed, and they don't radiate. An electron can jump between orbit \\(n\\) and \\(n'\\), emitting or absorbing a photon with energy equal to the level difference:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{E_n = -\\frac{13.6\\,\\text{eV}}{n^2},\\qquad \\Delta E = hf = \\frac{hc}{\\lambda}}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "This explained the atomic emission spectra of hydrogen perfectly — only photons with specific energies (corresponding to allowed transitions) are emitted. Bohr's model was a stepping stone: it merged classical orbits with quantum leaps, but the full theory (quantum mechanics, covered in the previous section) replaced orbits with probability clouds — atomic orbitals ."
+          },
+          {
+            "kind": "para",
+            "text": "n=∞ 0 eV n=3 −1.51 eV n=2 −3.4 eV n=1 −13.6 eV Lyman Balmer Paschen Hydrogen energy levels (Bohr model, 1913). Arrows show transitions producing the Lyman (UV), Balmer (visible), and Paschen (infrared) spectral series."
+          }
+        ]
+      },
+      {
+        "id": "nuclear",
+        "number": 2,
+        "title": "Nuclear Physics & Radioactivity",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "The nucleus contains nucleons (protons and neutrons) at densities so extreme that a teaspoon of nuclear matter weighs ~10¹⁹ kg. But nuclei are held together by a subtle balance. Radioactive decay transforms one element into another:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[N(t) = N_0\\,e^{-\\lambda t},\\qquad T_{1/2} = \\frac{\\ln 2}{\\lambda}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The half-life is constant — independent of chemical environment, pressure, or temperature. Carbon-14 dating (half-life 5,730 years) lets us date organic artifacts up to ~50,000 years old. The three natural decay modes are:"
+          },
+          {
+            "kind": "para",
+            "text": "Alpha (\\(\\alpha\\)): emits \\(^4_2\\text{He}\\); heavy, low penetration. Beta (\\(\\beta\\)): emits an electron (or positron) and a neutrino; medium penetration. Gamma (\\(\\gamma\\)): emits a high-energy photon; high penetration (requires dense shielding)."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Nuclear binding energy",
+            "text": "— The energy that holds nuclei together, from Einstein's \\(E=mc^2\\). When a heavy nucleus splits ( fission ) or two light nuclei fuse ( fusion ), mass is converted to energy. The mass defect \\(\\Delta E = \\Delta m\\,c^2\\) powers the Sun, nuclear reactors, and stars."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\Delta E = \\Delta m\\,c^2\\]"
+          }
+        ]
+      },
+      {
+        "id": "particle",
+        "number": 3,
+        "title": "The Standard Model of Particle Physics",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Everything in the universe (as far as we know) is made of elementary particles , organized in the Standard Model . There are two families of matter and the forces that act on them:"
+          },
+          {
+            "kind": "para",
+            "text": "Category Particles Mass Quarks (matter) up, down, charm, strange, top, bottom 2–173 GeV/c² Leptons (matter) electron, muon, tau, + 3 neutrinos 0–178 MeV/c² Force carriers photon (γ), W/Z bosons, gluon (g) 0 (γ,g), 80–91 GeV Higgs one scalar boson 125 GeV/c² The three light quarks (up, down, strange) combine to form protons, neutrons, pions, and the zoo of hadrons. The Higgs boson (discovered 2012) confirmed the mechanism by which the W and Z bosons — and through them, all elementary particles — acquire mass. But the Higgs mechanism explains only ~1% of the proton's mass; most of it comes from the strong interaction binding energy via \\(E = mc^2\\)."
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "What the Standard Model doesn't include.",
+            "text": "Gravity (described by general relativity) is not yet quantized. Dark matter, dark energy, and neutrino masses are observed but unexplained. The Standard Model is a symptom of a deeper theory — string theory, loop quantum gravity, or something we haven't imagined — that unifies all four forces."
+          }
+        ]
+      },
+      {
+        "id": "mass",
+        "number": 4,
+        "title": "Where Does Mass Come From?",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Most of the mass of your body didn't come from the Higgs. A proton weighs ~938 MeV/c², but its two up quarks and one down quark sum to only ~5 MeV/c². The other 99% comes from gluonic binding energy — the kinetic and potential energy of quarks and gluons trapped by the strong force . This is a direct consequence of \\(E = mc^2\\): energy has mass ."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\boxed{E = mc^2}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The Higgs field gives mass to the elementary particles (W, Z, electrons) via the Higgs mechanism . But the mass of protons and neutrons — and hence of planets, people, and pianos — arises from the strong force. We are, quite literally, made of stardust and binding energy."
+          }
+        ]
+      },
+      {
+        "id": "frontiers",
+        "number": 5,
+        "title": "Open Questions & Frontiers",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Modern physics has answered profound questions, but deeper ones remain:"
+          },
+          {
+            "kind": "para",
+            "text": "Question Why it matters Quantum gravity Reconcile general relativity (smooth spacetime) with quantum mechanics (discrete, probabilistic). Dark matter 85% of matter in the universe is invisible — inferred from galaxy rotation curves but never directly detected. Dark energy The universe's expansion is accelerating, driven by energy with negative pressure. Unification All forces were one at the Big Bang; can we find a single theory of everything? Measurement problem Why do superpositions \"collapse\" to definite outcomes? Is consciousness involved? The Standard Model is incomplete, not wrong. Every prediction tested — from the magnetic moment of the electron to the Higgs boson mass — matches experiment. But it contains ~20 free parameters (masses of particles, coupling strengths) that the Standard Model itself cannot predict. A deeper theory should explain why the masses and forces have the values they do. String theory, with its extra dimensions, is one ambitious attempt; others include loop quantum gravity and the search for physics beyond the Standard Model at the Large Hadron Collider. Key Takeaways Atoms have tiny, dense nuclei surrounded by electron orbitals — Bohr's quantized model explained hydrogen's spectrum. Radioactive decay follows exponential laws with constant half-lives; nuclear binding energy (\\(E=\\Delta mc^2\\)) powers stars and reactors. The Standard Model organizes particles into quarks, leptons, and force carriers — with the Higgs giving mass to elementary particles. 99% of visible mass comes from strong-force binding energy, not the Higgs — we are made of \\(E=mc^2\\). Frontiers remain: dark matter, dark energy, quantum gravity, and a unified theory. 🏠 Back to Topics →"
+          },
+          {
+            "kind": "para",
+            "text": "Physics Fundamentals — modern physics and conclusion. Back to topics ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "black-holes",
+    "title": "Black Holes & Gravitation",
+    "tagline": "Where gravity wins, and what it leaves behind",
+    "intro": "Where gravity wins, and what it leaves behind",
+    "icon": "⚫",
+    "hue": 35,
+    "sections": [
+      {
+        "id": "horizon",
+        "number": 1,
+        "title": "The Event Horizon",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "A black hole is not a hole in space. It is a region of spacetime where the curvature is so extreme that every possible future-directed path leads to the same place: the singularity. The boundary of that region is the event horizon , and it is not a physical surface — nothing special happens as you cross it. Locally, an infalling observer notices nothing unusual."
+          },
+          {
+            "kind": "para",
+            "text": "For a non-rotating, uncharged black hole — a Schwarzschild black hole — the horizon sits at the Schwarzschild radius, the single length scale you can build from a mass and the speed of light:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[r_s = \\frac{2GM}{c^2}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Note how little else enters. The radius of a black hole depends on its mass and nothing else — no material, no chemical composition. A teaspoon of neutron-star matter crushed to \\(3.2 \\times 10^{30}\\) kg would have \\(r_s \\approx 4.7\\) km, smaller than a city."
+          },
+          {
+            "kind": "diagram",
+            "diagram": "horizonCrossSection",
+            "caption": "Radial structure of a Schwarzschild black hole. Outside the dashed horizon light can still escape; inside, every future path ends at the singularity."
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Escape velocity intuition",
+            "text": "— in Newtonian gravity, escape velocity is \\(v_\\text{esc} = \\sqrt{2GM/r}\\). Set \\(v_\\text{esc} = c\\) and you recover \\(r_s = 2GM/c^2\\). The Newtonian argument is a mnemonic here, not a derivation, but the answer it gives is exactly right."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[v_\\text{esc} = \\sqrt{\\frac{2GM}{r}} = c \\;\\Longrightarrow\\; r_s = \\frac{2GM}{c^2}\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "example",
+            "title": "Example.",
+            "text": "The Sun, were it replaced by a black hole of the same mass, would have \\(r_s \\approx 3.0\\) km — but it would not be brighter in the sky. Black holes have no surface to emit from. The danger is purely gravitational: the orbit of Earth would be badly disturbed at a distance of about \\(10^9\\) m, roughly a thousand times the original orbit."
+          }
+        ]
+      },
+      {
+        "id": "redshift",
+        "number": 2,
+        "title": "Gravitational Redshift",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Light climbing out of a gravitational well loses energy. To a distant observer the light is redshifted; to one hovering just above the horizon it is blueshifted. For a static observer at radius \\(r\\) outside a mass \\(M\\):"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\frac{\\nu_\\infty}{\\nu_r} = \\frac{1}{\\sqrt{1 - r_s/r}}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The clock rate goes with it. Proper time for the hovering observer, relative to a clock at infinity:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[d\\tau = \\sqrt{1 - \\frac{r_s}{r}}\\; dt\\]"
+          },
+          {
+            "kind": "para",
+            "text": "As \\(r \\to r_s\\) the factor vanishes — to an external observer a clock at the horizon appears to freeze forever. This is the origin of the \"frozen star\" pictures you may have seen. It is a coordinate illusion: the infalling observer crosses the horizon in finite proper time."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[t_\\text{cross} = \\int_{r_s}^{r} \\frac{dr'}{\\sqrt{2GM/r' - 2GM/r}} = \\text{finite}\\]"
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Where this is measurable",
+            "text": "— gravitational redshift is confirmed by the Pound–Rebka experiment (1960), which shifted light by a factor of \\(2.5 \\times 10^{-15}\\) across Earth's height, and by the Thermal Atmosphere Measurement package on GPS satellites."
+          }
+        ]
+      },
+      {
+        "id": "tidal",
+        "number": 3,
+        "title": "Tidal Forces & Spaghettification",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "\"Infinitely dense\" is wrong and dangerously so. The singularity is not a place — it is a place time runs out. What actually destroys an infalling object is the differential gravity across it: your feet feel a stronger pull than your head, and the object is stretched."
+          },
+          {
+            "kind": "para",
+            "text": "The stretching is quantified by the geodesic deviation equation, whose Riemann curvature term sets the scale:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\frac{D^2 \\xi^\\mu}{D\\tau^2} = -R^\\mu{}_{\\nu\\alpha\\beta}\\, u^\\nu \\xi^\\alpha u^\\beta\\]"
+          },
+          {
+            "kind": "para",
+            "text": "For a radial infall outside a Schwarzschild hole, the leading tidal term scales as \\(1/r^3\\), with an explicit Newtonian form:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\Delta a \\approx \\frac{2GM}{r^3}\\,\\Delta x\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The mass factorises out and the distance appears cubed. That is why a supermassive black hole is a gentle place. At the event horizon of \\(M_\\odot = 4.6 \\times 10^{30}\\) kg the tidal stretch is survivable across a human body; for \\(10 M_\\odot\\) it is not; near a stellar-mass hole, \\(3 \\times 10^{29}\\) kg, the tidal force is spread over \\(r_s \\approx 400\\) m and shreds you."
+          },
+          {
+            "kind": "diagram",
+            "diagram": "redshift",
+            "caption": "Differential gravity stretches a body along the radial direction. Because the tidal term scales as $1/r^3$, the closer the approach, the more violent — and the larger $M$, the further out this begins."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Spaghettification",
+            "text": "— the tidal stretching that shreds an infalling object. The observed \"falling into a black hole\" footage from Interstellar 's fictional Gargantua was based on scientific papers on tidal disruption, though the effects there were exaggerated."
+          }
+        ]
+      },
+      {
+        "id": "accretion",
+        "number": 4,
+        "title": "Accretion Disks & Jets",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "A black hole has no surface, so matter crossing the horizon does not radiate on the way in. Instead, angular momentum slows the infalling gas into a disk — friction between neighbouring rings converts kinetic energy into heat. The inner edge of the disk sits at the innermost stable circular orbit, \\(r_\\text{ISCO} = 3r_s\\) for a Schwarzschild hole."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[r_\\text{ISCO} = \\frac{6GM}{c^2} = 3\\,r_s\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Efficiency is the remarkable part. Radiating at the Eddington limit, a thin disk around a non-rotating black hole converts only about \\(5.7\\%\\) of the accreted rest mass into energy; spinning one up near-extremally raises that to roughly \\(42\\%\\). For ordinary fusion the figure is \\(0.7\\%\\)."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\eta = \\frac{L}{\\dot{M}c^2} \\approx 0.057 \\;\\to\\; 0.42 \\quad \\text{(spin)}\\qquad \\text{vs} \\quad 0.007 \\;\\text{for H}\\!\\to\\!\\text{He fusion}\\]"
+          },
+          {
+            "kind": "diagram",
+            "diagram": "tidalStretch",
+            "caption": "Edge-on view. The disk extends far beyond the horizon, but its radiating inner edge is at $3r_s$ — that is where the light comes from."
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Tidal disruption events",
+            "text": "— when a star wanders too close to a stellar-mass black hole, it is torn apart. Half the debris returns on highly eccentric orbits, and the resulting accretion burst is a tidal disruption flare , bright enough to be visible from other galaxies."
+          }
+        ]
+      },
+      {
+        "id": "hawking",
+        "number": 5,
+        "title": "Hawking Radiation",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Quantum mechanics makes black holes glow. The uncertainty principle forbids the vacuum from having sharply defined energy everywhere; near the horizon, a virtual particle–antiparticle pair straddling the membrane can escape while its partner falls in. Energy conservation is satisfied by the hole's mass shrinking."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[T_\\text{H} = \\frac{\\hbar c^3}{8\\pi G M k_B}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The inverse mass dependence is the whole story. For the Sun (\\(T_\\text{H} \\approx 6 \\times 10^{-8}\\) K) this is utterly negligible, and the hole would need \\(10^{10}\\) years to evaporate. But for a microscopic primordial black hole of about \\(10^{11}\\) kg, the temperature reaches \\(10^{11}\\) K and it would have evaporated within the age of the universe."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[M(t) \\approx M_0\\left(1 - \\frac{t}{\\tau}\\right)^{1/3}, \\qquad \\tau \\approx 5120\\pi G^2 M_0^3/(\\hbar c^4) \\approx 8.4\\times10^{-17}\\left(\\frac{M_0}{\\mathrm{kg}}\\right)^3 \\mathrm{s}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Mass scales as the cube of lifetime. This is why primordial black holes, if they exist, are a candidate for dark matter — a population in a narrow mass window would still be cooling, and would be genuinely \"warm\" rather than starlight."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Unresolved.",
+            "text": "Hawking radiation has never been observed. Every laboratory attempt has been swamped by backgrounds many orders of magnitude larger. It remains one of the few predictions of general relativity that general quantum theory has never rendered unstable — the \"trans-Planckian problem\" is exactly that it assumes validity at energies where nothing justifies it."
+          }
+        ]
+      },
+      {
+        "id": "lensing",
+        "number": 6,
+        "title": "Gravitational Lensing",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Mass curves spacetime, so light does not travel in straight lines. A compact mass acts as a lens. The deflection for a ray passing impact parameter \\(b\\):"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\alpha = \\frac{4GM}{c^2 b} = \\frac{2r_s}{b}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The thin-lens approximation relates the observed angular separation \\(\\theta\\) to the Einstein radius \\(\\theta_E\\), from which lensing becomes a direct mass probe independent of any emission from the lens itself:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\beta = \\theta - \\frac{\\theta_E^2}{\\theta}, \\qquad \\theta_E = \\sqrt{\\frac{4GM}{c^2}\\frac{D_{LS}}{D_L D_S}}\\]"
+          },
+          {
+            "kind": "diagram",
+            "diagram": "accretionDisk",
+            "caption": "Exact alignment of source, lens and observer gives an Einstein ring — a perfect circle, because the deflection is the same at every angle around the lens."
+          }
+        ]
+      },
+      {
+        "id": "evidence",
+        "number": 7,
+        "title": "The Observational Evidence",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "For decades black holes were theoretical. Three observations settled the question, all of them based on the same principle: you measure the mass by watching what orbits it ."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Sagittarius A*",
+            "text": "— the radio source at the centre of our Galaxy. Stellar orbits measured by the Keck and VLT telescopes over more than a decade give a mass of about \\(4.3 \\times 10^6\\,M_\\odot\\) concentrated within a region smaller than our Solar System. No other object of that mass fits the data."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "M87*",
+            "text": "— imaged in 2019 by the Event Horizon Telescope. A ring of emission \\(5.4 \\times 10^{10} M_\\odot\\) in mass and \\(2.6 \\times 10^{12}\\) m across. The shadow's angular size confirms general relativity's prediction to within a few percent."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "GW150914",
+            "text": "— detected by LIGO in 2015, the first direct observation of gravitational waves: two \\(\\sim 36\\,M_\\odot\\) black holes spiralling together and merging into a \\(\\sim 62\\,M_\\odot\\) remnant, radiating about \\(3\\,M_\\odot c^2\\) in energy. Since 2015 the catalog has passed 90 candidates."
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Why the shadow is the right size",
+            "text": "— for a Schwarzschild hole the shadow subtends an angle of \\(2\\sqrt{3}\\,r_s/D\\). The critical impact parameter for photon capture is \\(b_c = 3\\sqrt{3}\\,GM/c^2 = 2.6\\,r_s\\), which is why lensed images do not vanish smoothly at the shadow edge but jump."
+          },
+          {
+            "kind": "para",
+            "text": "Key Takeaways A black hole is a region, not an object: everything inside \\(r_s = 2GM/c^2\\) reaches the singularity. Nothing marks the horizon itself. Gravity redshift makes clocks at \\(r\\) run slow by \\(\\sqrt{1 - r_s/r}\\) — a coordinate effect that the infaller does not experience. Tidal forces, not density, do the killing, and they scale as \\(1/r^3\\). Bigger black holes are gentler. Accretion is efficient because friction in the disk radiates — up to 42% with spin, versus 0.7% for fusion. Hawking temperature scales as \\(1/M\\), so only microscopic holes would evaporate within the age of the universe. We now have strong evidence: Sgr A*, the M87* image, and dozens of gravitational-wave mergers. ⏳ Next: Time Travel & Causality →"
+          },
+          {
+            "kind": "para",
+            "text": "Physics Fundamentals — gravitation module. Back to topics ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "time-travel",
+    "title": "Time Travel & Causality",
+    "tagline": "Special relativity permits it. The universe mostly forbids it.",
+    "intro": "Special relativity permits it. The universe mostly forbids it.",
+    "icon": "⏳",
+    "hue": 160,
+    "sections": [
+      {
+        "id": "cones",
+        "number": 1,
+        "title": "Light Cones & Causal Structure",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Everything in relativity rests on one distinction: which events can influence which. At any event you can separate the universe into three parts — the past light cone, the future light cone, and everything outside, causally disconnected from it. Inside the future cone are events you can reach by travelling slower than light. Outside it, you never can."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[ds^2 = -c^2\\,dt^2 + d\\vec{x}^2 \\quad\\Longrightarrow\\quad \\begin{cases} ds^2 0 & \\text{spacelike\\ \\ (no signal fits)} \\end{cases}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Because the interval between two events is invariant, whether an interval is timelike is a fact, not a perspective. No observer anywhere will ever disagree that event A happened before event B when A is in B's past light cone. That is the foundation of causality, and it is far stronger than it looks."
+          },
+          {
+            "kind": "diagram",
+            "diagram": "lightCone",
+            "caption": "Null lines sit at exactly 45° because light covers one unit of space per unit of time. Timelike paths are steeper, spacelike shallower — and only steeper ones are physically realisable."
+          }
+        ]
+      },
+      {
+        "id": "dilation",
+        "number": 2,
+        "title": "Time Dilation & Proper Time",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "The proper time \\(\\tau\\) along a worldline is the time shown by a clock that travels with the object. For constant velocity it's \\(\\tau = t/\\gamma\\). For a general path, integral and proper time are different things — that is the resolution of the twin paradox:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[d\\tau = \\sqrt{dt^2 - \\frac{d\\vec{x}^2}{c^2}}\\,, \\qquad \\gamma = \\frac{1}{\\sqrt{1 - v^2/c^2}}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "A clock moving with the Earth is a frame , not an event. Comparing an accelerating traveller against a stay-at-home twin requires integrating along each actual path, not applying \\(\\gamma\\) to a velocity:"
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\Delta\\tau = \\int \\sqrt{1 - \\frac{v(t)^2}{c^2}}\\;dt\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Under uniform motion the integral is identical for both twins. It is the acceleration — that is, the failure of the journey to be a single inertial frame — that breaks the symmetry and lets the age difference be predicted in advance."
+          },
+          {
+            "kind": "callout",
+            "variant": "example",
+            "title": "Example.",
+            "text": "A traveller accelerates at \\(g = 9.81\\) m/s² for one year, coasts, decelerates for one year, and repeats. In the stay-at-home frame the total elapsed time is about \\(2.8\\) years, but the traveller experiences about \\(1.1\\) years — and at turnaround they are at most \\(0.9\\) years old again. The traveller has genuinely, physically become younger. This is the classical constant-acceleration case, and the effect is unbounded."
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Not a paradox.",
+            "text": "The traveller sees their own age increase monotonically; the stay-at-home sees theirs increase more slowly. Neither observer sees the other's clock run backwards. This is the single most misunderstood result in relativity — there is no second step where the traveller goes backwards."
+          },
+          {
+            "kind": "diagram",
+            "diagram": "twinParadox",
+            "caption": "A spacetime diagram. Note the traveller's worldline leaves the light cone's straight-line symmetry by kinking — that kink is the turnaround, and it is the whole resolution."
+          }
+        ]
+      },
+      {
+        "id": "penrose",
+        "number": 3,
+        "title": "Penrose Diagrams",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "An infinite spacetime cannot be drawn on paper. Roger Penrose's 1968 trick makes it finite: light rays are null, so under a conformal transformation you can compress every path of light to 45°, which lets infinite distance be drawn as a finite point. Infinity becomes a line in the diagram, and the whole geometry fits on a sheet."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[ds^2 = \\Omega^2(\\eta)\\,\\bigl(-d\\alpha^2 + d\\beta^2\\bigr)\\]"
+          },
+          {
+            "kind": "para",
+            "text": "\\(\\Omega\\) is the conformal factor. The causal structure — which events can signal which — is unchanged, while every path of null geodesic becomes 45°. This is why the diagram is the right tool for studying horizons: a horizon is not a material surface but a boundary of causal reachability, and causality is exactly what conformal compactification preserves."
+          },
+          {
+            "kind": "diagram",
+            "diagram": "penroseDiagram",
+            "caption": "Kruskal–Szekeres conformal diagram of a maximally extended Schwarzschild black hole. The vertical lines are event horizons; the horizontal dashed lines are spacelike singularities. Our region (II) can never signal into region I — the white hole — which is causally sealed. This is why you cannot travel to a white hole even though it is \"the past of\" a black hole."
+          },
+          {
+            "kind": "para",
+            "text": "The Kruskal extension has four regions, and that structure is the payoff. Our exterior (region II) shares a boundary with an identical exterior (region I) connected through a wormhole. Signals from region I could in principle reach us. But the white hole (region IV) has no past you can enter — its past boundary is spacelike, so nothing inside it, not even light, can be sent backward to become the cause of anything in region III."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[ds^2 = -\\left(1 - \\frac{r_s}{r}\\right)c^2 dt^2 + \\frac{dr^2}{1 - r_s/r} + r^2 d\\Omega^2\\]"
+          },
+          {
+            "kind": "para",
+            "text": "Defining new coordinates \\(U\\) and \\(V\\) that are regular at the horizon, \\(U = -e^{-u/r_s}\\), \\(V = e^{v/r_s}\\), removes the singularity in the metric at \\(r = r_s\\). Coordinates are a choice; the horizon is a coordinate-independent boundary of causal reachability. That distinction — the difference between an apparent singularity and a genuine one — is the reason Penrose diagrams exist at all."
+          }
+        ]
+      },
+      {
+        "id": "ctc",
+        "number": 4,
+        "title": "Closed Timelike Curves",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "A timelike path that returns to its own starting point is a closed timelike curve — a CTC. By the equivalence principle, an observer on one would meet their younger self and, in principle, interact. Nothing in the Lorentzian metric forbids it."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[\\oint \\mathcal{L}_\\text{proper}\\;dt < 0 \\quad\\text{(a CTC exists where the \"time\" integral is negative)}\\]"
+          },
+          {
+            "kind": "para",
+            "text": "The shift function \\(\\xi = -T_\\text{out} + T_\\text{in}\\) in Gödel's solution gives \\(T_\\text{out} < T_\\text{in}\\), so you can circle and arrive before you left. The catch is the price of admission: Gödel's universe requires an infinite rotating dust cylinder of negative cosmological constant — unphysical on any reasonable account."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "Gödel's metric (1949)",
+            "text": "— the first rigorous construction of closed timelike curves in a solution of Einstein's equations, with a closed universe and a rotating dust solution. Kurt Gödel himself considered it a warning, not a discovery."
+          }
+        ]
+      },
+      {
+        "id": "wormholes",
+        "number": 5,
+        "title": "Wormholes & Tipler Cylinders",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "The cleanest time-machine candidate is a traversable wormhole: a throat connecting two distant regions, shortening a route without creating a shortcut to the past. Morris and Thorne (1988) showed that to keep such a throat open against vacuum tension you need an unphysically negative stress-energy density — but it does not violate any known energy condition, only the weak one."
+          },
+          {
+            "kind": "equation",
+            "tex": "\\[g_{tt} = \\left(1 - \\frac{r_0^2}{r^2}\\right), \\qquad \\text{throat at } r = r_0\\]"
+          },
+          {
+            "kind": "para",
+            "text": "To turn it into a machine, Morris and Thorne added a pair of disks moving fast along the throat. Tipler's 1974 analysis showed the whole arrangement is unstable: any perturbation at the throat propagates with a divergence, and no finite energy keeps it open. Magnetic fields destabilise it; so does self-gravity. The price is exactly what is hardest to pay."
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Cosmological protection.",
+            "text": "The \"chronometry protection conjecture\" (Hawking) proposes that any attempt to form a CTC is actively prevented — that the laws of physics, quantum effects included, conspire to break the chronology condition the moment it is threatened. It has never been proven, and quantum gravity is not complete enough to test it."
+          },
+          {
+            "kind": "diagram",
+            "diagram": "wormhole",
+            "caption": "A traversable wormhole is short, not long — it reaches region B without cutting through the intervening spacetime."
+          }
+        ]
+      },
+      {
+        "id": "why",
+        "number": 6,
+        "title": "Why Macroscopic Travel Is Believed Impossible",
+        "blocks": [
+          {
+            "kind": "para",
+            "text": "Given that the metric permits it, why is the standard answer so confident that time machines are impossible? Three independent lines of reasoning."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "1. Energy conditions.",
+            "text": "Every proposed construction needs exotic matter violating the weak or dominant energy condition — negative energy density or tension. This is not a technicality; it would imply repulsive gravitational effects (Morris–Thorne) and a driving force of roughly \\(10^{42}\\) kg for a year of acceleration, vastly exceeding the observable universe's mass-energy. Thorne's \"time machine security report\" argues no civilization could ever build one."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "2. Horizon is already a computational bottleneck.",
+            "text": "Bardeen's 1973 result: because a black hole horizon equation is stationary, a comparable event-horizon equation would also be stationary in time, and stationary equations like it are strongly resistant to solution. Long-standing singularity theorems suggest a horizon-producing device would not stay stationary."
+          },
+          {
+            "kind": "callout",
+            "variant": "definition",
+            "title": "3. Instability.",
+            "text": "As Tipler showed, any wormhole-based time machine is violently unstable to perturbations; no amount of exact geometry keeps it open. Quantum field theory in curved space independently predicts the \"minus-infinity catastrophe\" near horizons, where outgoing radiation is infinitely blueshifted."
+          },
+          {
+            "kind": "callout",
+            "variant": "tip",
+            "title": "Consensus.",
+            "text": "Working relativistic star club: time travel is forbidden for reasonable physics with high confidence, allowed by the bare equations, and unresolved in quantum gravity. \"Impossible\" is really \"no mechanism survives scrutiny.\" Any working machine would have to be different from every proposal so far."
+          },
+          {
+            "kind": "para",
+            "text": "Key Takeaways Light cones partition events into timelike, null and spacelike — an invariant fact no observer disputes. Proper time \\(\\tau = \\int\\sqrt{dt^2 - d\\vec{x}^2/c^2}\\) is the path integral that makes the twin paradox a non-paradox. Time travel to the past means a closed timelike curve — Lorentzian geometry allows one, physics rejects every known construction. Penrose diagrams compress infinite spacetime by mapping light rays to 45°, turning horizons and singularities into clear geometry. Wormholes and Gödel's universe show that the equations permit CTCs; energy conditions, stability and horizon-as-thermostat block every specific model. The honest answer: not proven impossible, but nothing we can build survives analysis. 🏠 Back to all topics"
+          },
+          {
+            "kind": "para",
+            "text": "Physics Fundamentals — causality module. Back to topics ."
+          }
+        ]
+      }
+    ]
+  }
+]
