@@ -1,8 +1,7 @@
 name: Deploy frontend to GitHub Pages
 
-# The frontend is a static Vite build. Pages serves it from the repo root;
-# the FastAPI backend cannot run there and is deployed separately, so its
-# origin is injected at build time via VITE_API_URL.
+# The frontend is a static Vite build served by Pages. There is no backend:
+# the site has no API, and progress lives in the reader's browser.
 on:
   push:
     branches: [master]
@@ -30,10 +29,7 @@ jobs:
 
       - run: npm ci
 
-      - name: Build
-        env:
-          VITE_API_URL: ${{ vars.VITE_API_URL }}
-        run: npm run build
+      - run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:
