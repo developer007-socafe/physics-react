@@ -5,11 +5,15 @@
  * markup from a string. The one place raw text is split is inline math, and
  * even there the pieces are rendered as text nodes.
  */
-import { Math, RichText } from '@/components/Math'
+// Aliased because a component named Math shadows the global Math object,
+// which silently breaks every Math.round call in this file.
+import { Math as TeX, RichText } from '@/components/Math'
 import * as diagrams from '@/components/diagrams'
 import { Card } from '@/components/ui/card'
+import { Progress } from '@/components/ui/progress'
 import type { Block, DiagramId, Section, Topic } from '@/content/types'
 import { animateCardHover } from '@/lib/gsap'
+import { useProgressContext } from '@/lib/ProgressContext'
 import { useRef } from 'react'
 
 /* ---------------------------------------------------------------- */
@@ -77,7 +81,7 @@ function BlockView({ block }: { block: Block }) {
     case 'equation':
       return (
         <div className="equation my-5 overflow-x-auto">
-          <Math tex={block.tex} display />
+          <TeX tex={block.tex} display />
         </div>
       )
 
@@ -158,9 +162,14 @@ export function SectionView({ section }: { section: Section }) {
 
 export function TopicCard({ topic }: { topic: Topic }) {
   const ref = useRef<HTMLDivElement>(null)
+  const { record } = useProgressContext()
 
   const enter = () => ref.current && animateCardHover(ref.current, true)
   const leave = () => ref.current && animateCardHover(ref.current, false)
+
+  const done = topic.sections.filter((s) => record.completed.includes(s.id)).length
+  const total = topic.sections.length
+  const finished = done === total && total > 0
 
   return (
     <Card
@@ -178,9 +187,23 @@ export function TopicCard({ topic }: { topic: Topic }) {
           <div className="flex-1">
             <h3 className="font-display text-xs leading-relaxed">{topic.title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{topic.tagline}</p>
-            <span className="mt-3 block font-mono text-sm text-accent">
-              OPEN →
-            </span>
+            <div className="mt-3 flex items-center justify-between gap-2">
+              <span className="font-mono text-sm text-accent">
+                {finished ? '✓ COMPLETE' : 'OPEN →'}
+              </span>
+              <span
+                className="font-mono text-xs text-muted-foreground"
+                aria-label={`${done} of ${total} sections done`}
+              >
+                {done}/{total}
+              </span>
+            </div>
+            {done > 0 && (
+              <Progress
+                value={Math.round((done / total) * 100)}
+                className="mt-2 h-1"
+              />
+            )}
           </div>
         </div>
       </a>

@@ -4,14 +4,18 @@
  * 404. Hash routing keeps every URL working on any static host.
  */
 import { SectionView, TopicCard } from '@/components/Content'
+import { CompleteToggle } from '@/components/CompleteToggle'
 import { EquationExplorer } from '@/components/dialogs/EquationExplorer'
-import { LiveApod, LiveIss, LiveQuakes } from '@/components/LiveFeeds'
+import { BadgeShelf, BadgeToast, ProgressHud } from '@/components/Progress'
+import { Quiz, TopicProgressBar } from '@/components/Quiz'
 import { PageShell, PageTitle, SiteFooter, SiteHeader } from '@/components/layout/SiteChrome'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { findTopic, topics } from '@/content/topics'
+import { useProgressContext, ProgressProvider } from '@/lib/ProgressContext'
 import { useScrollReveal } from '@/lib/gsap'
-import { useEffect } from 'react'
+import { questionsForSection } from '@/lib/questions'
+import { useEffect, useState } from 'react'
 import { HashRouter, Link, Route, Routes, useParams } from 'react-router-dom'
 
 /* ---------------------------------------------------------------- */
@@ -31,14 +35,20 @@ function Home() {
         </h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
           An interactive guide to the laws that govern motion, light, space and
-          time — {topics.length} topics, {sectionCount} sections, and real data
-          pulled live from public science APIs.
+          time — {topics.length} topics, {sectionCount} sections, and quizzes
+          that check whether any of it stuck.
         </p>
       </section>
 
+      <ProgressHud />
+
       <div ref={reveal}>
         <section className="py-6">
-          <h2 data-reveal>CHOOSE A TOPIC</h2>
+          <h2 data-reveal>CHOOSE A TRACK</h2>
+          <p className="mb-4 mt-2 text-muted-foreground" data-reveal>
+            Each topic ends in a short quiz. Mark sections read to earn XP, keep
+            a streak going, and unlock achievements.
+          </p>
           <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {topics.map((topic) => (
               <TopicCard key={topic.slug} topic={topic} />
@@ -60,18 +70,83 @@ function Home() {
           </Card>
         </section>
 
-        <section className="py-6">
-          <h2 data-reveal>LIVE FROM PUBLIC APIs</h2>
-          <p className="mb-4 mt-2 text-muted-foreground" data-reveal>
-            Real data, fetched through this site’s own backend so the feeds are
-            cached and CORS-safe. Each card degrades to a plain message if its
-            source is unreachable — the written pages never depend on them.
-          </p>
-          <LiveApod />
-          <LiveIss />
-          <LiveQuakes />
-        </section>
+        <BadgeShelf />
       </div>
+    </>
+  )
+}
+
+/* ---------------------------------------------------------------- */
+/* Progress dashboard                                                */
+/* ---------------------------------------------------------------- */
+
+function ProgressPage() {
+  const { record, reset } = useProgressContext()
+  const [confirming, setConfirming] = useState(false)
+
+  return (
+    <>
+      <PageTitle
+        eyebrow="// YOUR PROGRESS"
+        title="DASHBOARD"
+        tagline="Everything you have unlocked on this device. Nothing is sent anywhere."
+      />
+
+      <ProgressHud />
+
+      <section className="my-6">
+        <h2 className="font-display text-xs">PER TOPIC</h2>
+        <ul className="mt-4 flex flex-col gap-5">
+          {topics.map((topic) => {
+            const done = topic.sections.filter((s) => record.completed.includes(s.id)).length
+            return (
+              <li key={topic.slug}>
+                <Link
+                  to={`/topic/${topic.slug}`}
+                  className="font-mono text-accent hover:underline"
+                >
+                  {topic.icon} {topic.title}
+                </Link>
+                <TopicProgressBar done={done} total={topic.sections.length} />
+              </li>
+            )
+          })}
+        </ul>
+      </section>
+
+      <BadgeShelf />
+
+      <section className="my-8 border-t border-border pt-4">
+        {confirming ? (
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="font-mono text-sm">
+              This deletes every completed section, answer and achievement on
+              this device. It cannot be undone.
+            </span>
+            <Button
+              variant="destructive"
+              className="font-mono"
+              onClick={() => {
+                reset()
+                setConfirming(false)
+              }}
+            >
+              ERASE EVERYTHING
+            </Button>
+            <Button variant="ghost" className="font-mono" onClick={() => setConfirming(false)}>
+              KEEP IT
+            </Button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            className="font-mono text-sm text-muted-foreground underline"
+            onClick={() => setConfirming(true)}
+          >
+            Reset all progress
+          </button>
+        )}
+      </section>
     </>
   )
 }
@@ -84,6 +159,7 @@ function TopicPage() {
   const { slug = '' } = useParams()
   const topic = findTopic(slug)
   const reveal = useScrollReveal<HTMLDivElement>()
+  const { record } = useProgressContext()
 
   // Switching topics should start at the top; a router keeps the old offset.
   useEffect(() => {
@@ -94,15 +170,15 @@ function TopicPage() {
     return (
       <Card className="my-10">
         <h1>NO SUCH TOPIC</h1>
-        <p className="mt-3 text-muted-foreground">
-          Nothing is filed under “{slug}”.
-        </p>
+        <p className="mt-3 text-muted-foreground">Nothing is filed under “{slug}”.</p>
         <Button asChild className="mt-4">
           <Link to="/">Back to all topics</Link>
         </Button>
       </Card>
     )
   }
+
+  const done = topic.sections.filter((s) => record.completed.includes(s.id)).length
 
   return (
     <article ref={reveal}>
@@ -112,25 +188,39 @@ function TopicPage() {
         tagline={topic.intro}
       />
 
+      <TopicProgressBar done={done} total={topic.sections.length} />
+
       <nav aria-label="Sections" className="my-6" data-reveal>
         <p className="mb-2 font-mono text-xs text-muted-foreground">CONTENTS</p>
         <ol className="grid gap-1 sm:grid-cols-2">
-          {topic.sections.map((section) => (
-            <li key={section.id}>
-              <a
-                href={`#${section.id}`}
-                className="font-mono text-sm text-accent hover:underline"
-              >
-                [{String(section.number).padStart(2, '0')}] {section.title}
-              </a>
-            </li>
-          ))}
+          {topic.sections.map((section) => {
+            const complete = record.completed.includes(section.id)
+            return (
+              <li key={section.id}>
+                <a
+                  href={`#${section.id}`}
+                  className="font-mono text-sm text-accent hover:underline"
+                >
+                  {complete ? '✓' : ' '} [{String(section.number).padStart(2, '0')}] {section.title}
+                </a>
+              </li>
+            )
+          })}
         </ol>
       </nav>
 
-      {topic.sections.map((section) => (
-        <SectionView key={section.id} section={section} />
-      ))}
+      {topic.sections.map((section) => {
+        const quiz = questionsForSection(section.id)
+        return (
+          <div key={section.id}>
+            <SectionView section={section} />
+            {quiz.length > 0 && (
+              <Quiz questions={quiz} title={`CHECK YOURSELF — ${section.title}`} />
+            )}
+            <CompleteToggle sectionId={section.id} />
+          </div>
+        )
+      })}
 
       <div className="mt-10" data-reveal>
         <EquationExplorer />
@@ -164,19 +254,23 @@ function NotFound() {
 export default function App() {
   return (
     <HashRouter>
-      <div className="min-h-dvh">
-        <SiteHeader />
-        <main className="mx-auto max-w-5xl px-4 pb-10">
-          <PageShell>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/topic/:slug" element={<TopicPage />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </PageShell>
-        </main>
-        <SiteFooter />
-      </div>
+      <ProgressProvider>
+        <div className="min-h-dvh">
+          <SiteHeader />
+          <main className="mx-auto max-w-5xl px-4 pb-10">
+            <PageShell>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/progress" element={<ProgressPage />} />
+                <Route path="/topic/:slug" element={<TopicPage />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </PageShell>
+          </main>
+          <SiteFooter />
+          <BadgeToast />
+        </div>
+      </ProgressProvider>
     </HashRouter>
   )
 }

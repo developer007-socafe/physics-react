@@ -54,6 +54,17 @@ export function SiteHeader() {
               {topic.icon} {topic.title.split(' ')[0]}
             </NavLink>
           ))}
+          <NavLink
+            to="/progress"
+            className={({ isActive }) =>
+              [
+                'shrink-0 whitespace-nowrap px-2 py-1 font-mono text-sm transition-colors',
+                isActive ? 'text-accent' : 'text-muted-foreground hover:text-foreground',
+              ].join(' ')
+            }
+          >
+            ▓ PROGRESS
+          </NavLink>
         </nav>
 
         {/* Mobile drawer */}
@@ -69,6 +80,9 @@ export function SiteHeader() {
               <nav className="flex flex-col">
                 <NavLink to="/" className="border-b border-border py-2 font-mono">
                   Home
+                </NavLink>
+                <NavLink to="/progress" className="border-b border-border py-2 font-mono">
+                  ▓ Progress
                 </NavLink>
                 {topics.map((topic) => (
                   <NavLink
@@ -111,29 +125,8 @@ export function SiteFooter() {
           >
             KaTeX
           </a>
-          . Live figures from{' '}
-          <a href="https://api.nasa.gov" target="_blank" rel="noreferrer" className="text-accent">
-            NASA
-          </a>
-          ,{' '}
-          <a
-            href="https://earthquake.usgs.gov/earthquakes/feed/"
-            target="_blank"
-            rel="noreferrer"
-            className="text-accent"
-          >
-            USGS
-          </a>{' '}
-          and{' '}
-          <a
-            href="https://wheretheiss.at"
-            target="_blank"
-            rel="noreferrer"
-            className="text-accent"
-          >
-            WhereTheISSAt
-          </a>
-          .
+          . Progress is stored only in this browser — no account, no server,
+          nothing leaves your device.
         </p>
         <Separator />
         <p className="text-xs">

@@ -18,6 +18,7 @@ import {
 } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { animateDialogIn, animateDialogOut, animateTypewrite } from '@/lib/gsap'
+import { useProgressContext } from '@/lib/ProgressContext'
 import { useEffect, useRef, useState } from 'react'
 
 interface Scenario {
@@ -174,6 +175,7 @@ export function EquationExplorer() {
   const [active, setActive] = useState(SCENARIOS[0].id)
   const content = useRef<HTMLDivElement>(null)
   const heading = useRef<HTMLParagraphElement>(null)
+  const { noteExplorerOpened } = useProgressContext()
 
   const scenario = SCENARIOS.find((s) => s.id === active) ?? SCENARIOS[0]
 
@@ -181,6 +183,8 @@ export function EquationExplorer() {
   // when it closes so nothing pops.
   useEffect(() => {
     if (!open) return
+    // Opening it at all is the achievement; once earned it never re-fires.
+    noteExplorerOpened()
     animateDialogIn(content.current)
 
     if (heading.current) {
