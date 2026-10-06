@@ -88,8 +88,17 @@ export default function GameCanvas({ onGameOver, isActive }: Props) {
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
+    // Spawn the ship outside the starting event horizon. Previously it
+    // appeared at the exact screen centre — which is also where the
+    // black hole sits — so the collision check tripped on the very first
+    // frame and the game appeared to end instantly (reported as a mobile
+    // bug, but it was universal). Now it starts at a random angle, far
+    // enough from the centre to give the player a moment to react.
+    const startAngle = Math.random() * Math.PI * 2
+    const startDist  = W * 0.22
     const ship: Ship = {
-      x: W / 2, y: H / 2,
+      x: W / 2 + Math.cos(startAngle) * startDist,
+      y: H / 2 + Math.sin(startAngle) * startDist,
       vx: 0, vy: 0,
       angle: Math.random() * Math.PI * 2,
       thrust: 0,
