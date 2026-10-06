@@ -17,6 +17,7 @@ import { useScrollReveal } from '@/lib/gsap'
 import { questionsForSection } from '@/lib/questions'
 import { useEffect, useState } from 'react'
 import { HashRouter, Link, Route, Routes, useParams } from 'react-router-dom'
+import GamePage from '@/pages/GamePage'
 
 /* ---------------------------------------------------------------- */
 /* Home                                                              */
@@ -270,6 +271,7 @@ export default function App() {
                 <Route path="/progress" element={<ProgressPage />} />
                 <Route path="/topic/:slug" element={<TopicPage />} />
                 <Route path="*" element={<NotFound />} />
+                <Route path="/game/black-hole-dive" element={<GamePage />} />
               </Routes>
             </PageShell>
           </main>
