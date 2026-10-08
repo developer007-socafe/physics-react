@@ -1,0 +1,309 @@
+/* ── Flappy Bat styles, adapted for the physics-react CRT theme.
+   The site's index.css already provides the global reset, scanlines,
+   dark background, and Press Start 2P + VT323 fonts. ── */
+
+/* ── wrapper: centers the 480x700 stage in the page ── */
+.flappy-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+/* ── stage / canvas ── */
+.flappy-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 480 / 700;
+  border: 3px solid #241640;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #08061f;
+  box-shadow:
+    0 0 0 2px #06060f,
+    0 0 46px rgba(120, 60, 200, 0.28),
+    inset 0 0 70px rgba(0, 0, 0, 0.55);
+  touch-action: none;
+  cursor: pointer;
+}
+
+.flappy-screen {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── HUD ── */
+.flappy-hud {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 12;
+  pointer-events: none;
+}
+
+.flappy-hud-off {
+  opacity: 0;
+}
+
+.flappy-score {
+  font-size: clamp(20px, 6vw, 32px);
+  line-height: 1;
+  color: #fff;
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.5),
+    2px 2px 0 #1a0b2e,
+    -1px -1px 0 #1a0b2e;
+}
+
+.flappy-score-pop {
+  animation: flappyScorePop 0.2s ease-out;
+}
+
+@keyframes flappyScorePop {
+  0% { transform: scale(1); color: #fff; }
+  45% { transform: scale(1.25); color: #ffe680; }
+  100% { transform: scale(1); color: #fff; }
+}
+
+.flappy-hud-row {
+  display: flex;
+  gap: 7px;
+}
+
+.flappy-hud-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 7px;
+  letter-spacing: 1px;
+  color: #d9c8ff;
+  padding: 4px 7px;
+  border-radius: 3px;
+  background: rgba(10, 5, 25, 0.55);
+  border: 1px solid rgba(190, 150, 255, 0.28);
+  text-shadow: 0 1px 0 #000;
+}
+
+.flappy-coin-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 32%, #fff3c0, #ffc93c 55%, #b8860b);
+  box-shadow: 0 0 5px rgba(255, 201, 60, 0.8);
+}
+
+/* ── top-right icon buttons ── */
+.flappy-top-right {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 7px;
+  z-index: 14;
+}
+
+.flappy-icon-btn {
+  width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1;
+  color: #e6dcff;
+  background: rgba(12, 6, 30, 0.7);
+  border: 2px solid rgba(190, 150, 255, 0.35);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.06s ease, background 0.12s ease;
+}
+
+.flappy-icon-btn:hover {
+  background: rgba(40, 18, 78, 0.85);
+}
+
+.flappy-icon-btn:active {
+  transform: scale(0.92);
+}
+
+/* ── overlays ── */
+.flappy-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px;
+  text-align: center;
+  background: rgba(6, 3, 18, 0.82);
+  backdrop-filter: blur(3px);
+  z-index: 20;
+  animation: flappyFadeIn 0.18s ease-out;
+}
+
+@keyframes flappyFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.flappy-title {
+  font-size: clamp(18px, 5.6vw, 28px);
+  color: #ffd76b;
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 16px rgba(255, 215, 107, 0.45),
+    2px 2px 0 #6b3a00;
+}
+
+.flappy-title-pulse {
+  animation: flappyTitlePulse 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flappy-title-pulse { animation: none; }
+  .flappy-score-pop { animation: none; }
+}
+
+@keyframes flappyTitlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+.flappy-subtitle {
+  font-size: clamp(7px, 2.2vw, 9px);
+  line-height: 2;
+  color: #a89ec4;
+  letter-spacing: 1px;
+}
+
+.flappy-subtitle strong {
+  color: #ffd76b;
+}
+
+.flappy-go-title {
+  font-size: clamp(15px, 4.8vw, 22px);
+  color: #ff6b6b;
+  letter-spacing: 2px;
+  text-shadow:
+    0 0 16px rgba(255, 80, 80, 0.45),
+    2px 2px 0 #6b0000;
+}
+
+.flappy-pause-title {
+  color: #8fd7ff;
+  text-shadow:
+    0 0 16px rgba(120, 200, 255, 0.45),
+    2px 2px 0 #00335b;
+}
+
+.flappy-new-best {
+  font-size: 9px;
+  color: #7dffb0;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(125, 255, 176, 0.6);
+  animation: flappyTitlePulse 0.9s ease-in-out infinite;
+}
+
+.flappy-final-score {
+  font-size: clamp(11px, 3vw, 16px);
+  color: #fff;
+  text-shadow: 0 2px 0 #1a0b2e;
+}
+
+.flappy-best-score {
+  font-size: 7px;
+  color: #ffd76b;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 0 #000;
+}
+
+.flappy-stats {
+  display: flex;
+  gap: 10px;
+  margin: 4px 0;
+}
+
+.flappy-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 78px;
+  padding: 10px 8px;
+  background: rgba(12, 6, 30, 0.6);
+  border: 2px solid rgba(190, 150, 255, 0.3);
+  border-radius: 4px;
+}
+
+.flappy-stat-label {
+  font-size: 6px;
+  color: #9b8fc0;
+  letter-spacing: 1px;
+}
+
+.flappy-stat-value {
+  font-size: 14px;
+  color: #fff;
+  text-shadow: 0 2px 0 #1a0b2e;
+}
+
+.flappy-btn {
+  font-family: var(--font-display), monospace;
+  font-size: clamp(8px, 2.4vw, 11px);
+  letter-spacing: 1px;
+  padding: 12px 26px;
+  color: #2a1400;
+  background: linear-gradient(180deg, #ffe27a 0%, #ffc93c 55%, #e8a317 100%);
+  border: 3px solid #6b3a00;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow:
+    0 4px 0 #6b3a00,
+    0 6px 14px rgba(0, 0, 0, 0.55);
+  transition: transform 0.06s ease, box-shadow 0.06s ease;
+}
+
+.flappy-btn:hover {
+  filter: brightness(1.07);
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 0 #6b3a00,
+    0 8px 18px rgba(0, 0, 0, 0.6);
+}
+
+.flappy-btn:active {
+  transform: translateY(3px);
+  box-shadow:
+    0 1px 0 #6b3a00,
+    0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.flappy-hint {
+  font-size: 6px;
+  color: #6f668c;
+  letter-spacing: 1px;
+}
+
+/* caption under the stage */
+.flappy-instructions {
+  margin: 10px auto 0;
+  font-size: 7px;
+  color: #4b4463;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+@media (max-height: 520px) {
+  .flappy-instructions { display: none; }
+}

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="72%">
+      <stop offset="0%" stop-color="#2a1854"/>
+      <stop offset="100%" stop-color="#08061f"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="10" fill="url(#bg)"/>
+  <g transform="translate(34 32)">
+    <!-- far wing -->
+    <path d="M-4 -1 Q-14 -11 -25 -9.5 Q-21 -2 -18 1 Q-14.5 6 -12 2 Q-8.5 7 -6 2.5 Q-4 1 -4 4 Z"
+          fill="#4a2a72" stroke="#1d0f38" stroke-width="1.4" stroke-linejoin="round"/>
+    <!-- body -->
+    <path d="M-9 2 C-13 -4 -7 -10 0 -10 C6 -10 9 -7 9 -3 C12 0 10 7 4 9 C-2 11 -8 8 -9 2 Z"
+          fill="#7544b3" stroke="#1d0f38" stroke-width="1.5" stroke-linejoin="round"/>
+    <!-- head -->
+    <circle cx="8.5" cy="-6" r="7.6" fill="#7544b3" stroke="#1d0f38" stroke-width="1.5"/>
+    <!-- muzzle (points right) -->
+    <ellipse cx="14.6" cy="-3.4" rx="3.4" ry="2.8" transform="rotate(-14 14.6 -3.4)"
+             fill="#8f5ccd" stroke="#1d0f38" stroke-width="1.3"/>
+    <!-- ears -->
+    <path d="M0.5 -11 L-2 -22 L6 -12.5 Z" fill="#3d2360" stroke="#1d0f38" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="M6 -11.5 L5.5 -23.5 L13.5 -13 Z" fill="#8a5cc9" stroke="#1d0f38" stroke-width="1.4" stroke-linejoin="round"/>
+    <!-- eyes -->
+    <circle cx="11.4" cy="-7.6" r="3.1" fill="#fffaf0"/>
+    <circle cx="12.2" cy="-7.4" r="1.6" fill="#2a1040"/>
+    <circle cx="11.2" cy="-8.9" r="0.8" fill="#fff"/>
+    <circle cx="5.2" cy="-8.6" r="2.2" fill="#fffaf0"/>
+    <circle cx="5.7" cy="-8.4" r="1.1" fill="#2a1040"/>
+    <!-- near wing -->
+    <path d="M1 -2 Q-11 -12 -23 -10.5 Q-19 -1 -16 1.6 Q-12.5 6.5 -9.5 2.4 Q-6 7.5 -3.5 3 Q-1.5 1.2 1 4.6 Z"
+          fill="#8a5cc9" stroke="#2a1448" stroke-width="1.4" stroke-linejoin="round"/>
+  </g>
+</svg>

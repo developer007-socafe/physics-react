@@ -18,6 +18,8 @@ import { questionsForSection } from '@/lib/questions'
 import { useEffect, useState } from 'react'
 import { HashRouter, Link, Route, Routes, useParams } from 'react-router-dom'
 import GamePage from '@/pages/GamePage'
+import GamesPage from '@/pages/GamesPage'
+import FlappyBatGame from '@/components/game/FlappyBatGame'
 
 /* ---------------------------------------------------------------- */
 /* Home                                                              */
@@ -272,6 +274,8 @@ export default function App() {
                 <Route path="/topic/:slug" element={<TopicPage />} />
                 <Route path="*" element={<NotFound />} />
                 <Route path="/game/black-hole-dive" element={<GamePage />} />
+                <Route path="/games" element={<GamesPage />} />
+                <Route path="/games/flappy-bat" element={<FlappyBatGame />} />
               </Routes>
             </PageShell>
           </main>
